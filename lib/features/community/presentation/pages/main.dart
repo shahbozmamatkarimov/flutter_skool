@@ -41,7 +41,7 @@ class _CommunityMainPageState extends State<CommunityMainPage>
             child: TabBar(
               controller: controllerForMainTabVarView,
               indicatorSize: TabBarIndicatorSize
-                  .label, // Set the indicator size to match the label width
+                  .label,
               indicatorWeight: 2,
               dividerColor: const Color(0xFFBCDEFF),
               isScrollable: true,

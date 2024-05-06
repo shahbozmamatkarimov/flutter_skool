@@ -1,22 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:skool/features/community/presentation/widgets/CommunityCard.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:shimmer/shimmer.dart';
+import 'package:skool/features/community/data/data_sources/community_service.dart';
+import 'package:skool/features/community/data/repositories/impl_community_repo.dart';
+import 'package:skool/features/community/presentation/bloc/community_category/community_category_bloc.dart';
+import 'package:skool/features/community/presentation/widgets/CommunityCard.dart';
 
 class CommunityPage extends StatelessWidget {
-  CommunityPage({super.key});
+  final communityService = CommunityService.create();
 
-  final List<String> buttonLabels = [
-    "All",
-    "How I use Skool",
-    "Announcements",
-    "Product Feedback",
-    "Product Question",
-    "Product Question",
-    "Product Question",
-    "Product Question",
-    "Product Question",
-  ];
+  CommunityPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -63,49 +57,125 @@ class CommunityPage extends StatelessWidget {
             const SizedBox(
               height: 24,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                SizedBox(
-                  width: MediaQuery.of(context).size.width > 480
-                      ? MediaQuery.of(context).size.width * 0.8
-                      : MediaQuery.of(context).size.width * 0.7,
-                  height: 80,
-                  child: ClipRect(
-                    child: Wrap(
-                      spacing: 12.0,
-                      runSpacing: 12.0,
-                      children: [
-                        for (String label in buttonLabels)
-                          TextButton(
-                            style: ButtonStyle(
-                              padding: MaterialStateProperty.all(
-                                  const EdgeInsets.all(8.0)),
-                              backgroundColor: MaterialStateProperty.all(
-                                const Color(0xFFBCDEFF),
-                              ),
+            BlocProvider(
+              create: (context) => CommunityCategoryBloc(
+                  communityCategoryRepo:
+                      ImplCommunityRepo(communityService: communityService)),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width > 480
+                        ? MediaQuery.of(context).size.width * 0.8
+                        : MediaQuery.of(context).size.width * 0.7,
+                    height: 80,
+                    child: BlocBuilder<CommunityCategoryBloc,
+                        CommunityCategoryState>(
+                      builder: (context, state) {
+                        if (state is Loading) {
+                          return ClipRect(
+                            child: Wrap(
+                              spacing: 12.0,
+                              runSpacing: 12.0,
+                              children: [
+                                for (var _ in [1, 2, 3, 4, 5, 6, 7, 8, 9])
+                                  Shimmer.fromColors(
+                                    baseColor: Colors.grey.withOpacity(
+                                        0.3), // Background color of the skeleton
+                                    highlightColor: Colors.grey.withOpacity(
+                                        0.1), // Highlight color of the skeleton
+                                    child: Container(
+                                      height: 34,
+                                      width: 100,
+                                      decoration: BoxDecoration(
+                                        color: Colors.grey[300],
+                                        borderRadius: BorderRadius.circular(17),
+                                      ),
+                                    ),
+                                  ),
+                              ],
                             ),
-                            onPressed: () => {},
+                          );
+                        } else if (state is LoadedCommunityData) {
+                          final community = state.user;
+                          return ClipRect(
+                            child: Wrap(
+                              spacing: 12.0,
+                              runSpacing: 12.0,
+                              children: [
+                                TextButton(
+                                  style: ButtonStyle(
+                                    padding: MaterialStateProperty.all(
+                                        const EdgeInsets.all(8.0)),
+                                    backgroundColor: MaterialStateProperty.all(
+                                      const Color(0xFFBCDEFF),
+                                    ),
+                                  ),
+                                  onPressed: () => {},
+                                  child: const Text(
+                                    "All",
+                                    style: TextStyle(
+                                      color: Color(0xFF070707),
+                                      fontSize: 12,
+                                    ),
+                                  ),
+                                ),
+                                for (var i in community)
+                                  TextButton(
+                                    style: ButtonStyle(
+                                      padding: MaterialStateProperty.all(
+                                          const EdgeInsets.all(8.0)),
+                                      backgroundColor:
+                                          MaterialStateProperty.all(
+                                        const Color(0xFFBCDEFF),
+                                      ),
+                                    ),
+                                    onPressed: () => {},
+                                    child: Text(
+                                      "${i.name}",
+                                      style: const TextStyle(
+                                        color: Color(0xFF070707),
+                                        fontSize: 12,
+                                      ),
+                                    ),
+                                  ),
+                              ],
+                            ),
+                          );
+                        } else if (state is ErrorLoadingCommunityData) {
+                          return Center(
                             child: Text(
-                              label,
-                              style: const TextStyle(
-                                color: Color(0xFF070707),
-                                fontSize: 12,
-                              ),
-                            ),
-                          ),
-                      ],
+                                'Error loading community data: ${state.errorMessage}'),
+                          );
+                        } else {
+                          return Container();
+                        }
+                      },
                     ),
                   ),
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    SizedBox(
-                      width: 34,
-                      height: 34,
-                      child: TextButton(
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      SizedBox(
+                        width: 34,
+                        height: 34,
+                        child: TextButton(
+                          style: ButtonStyle(
+                            padding: MaterialStateProperty.all(
+                                const EdgeInsets.all(8.0)),
+                            backgroundColor: MaterialStateProperty.all(
+                              const Color(0xFFFFFFFF),
+                            ), // Change background color
+                          ),
+                          onPressed: () => {},
+                          child: SvgPicture.asset("assets/svg/icon/filter.svg"),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 8,
+                      ),
+                      TextButton(
                         style: ButtonStyle(
                           padding: MaterialStateProperty.all(
                               const EdgeInsets.all(8.0)),
@@ -114,62 +184,28 @@ class CommunityPage extends StatelessWidget {
                           ), // Change background color
                         ),
                         onPressed: () => {},
-                        child: SvgPicture.asset("assets/svg/icon/filter.svg"),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 8,
-                    ),
-                    TextButton(
-                      style: ButtonStyle(
-                        padding: MaterialStateProperty.all(
-                            const EdgeInsets.all(8.0)),
-                        backgroundColor: MaterialStateProperty.all(
-                          const Color(0xFFFFFFFF),
-                        ), // Change background color
-                      ),
-                      onPressed: () => {},
-                      child: const Text(
-                        "More...",
-                        style: TextStyle(
-                          fontSize: 12,
+                        child: const Text(
+                          "More...",
+                          style: TextStyle(
+                            fontSize: 12,
+                          ),
                         ),
                       ),
-                    ),
-                  ],
-                ),
-              ],
+                    ],
+                  ),
+                ],
+              ),
             ),
             const SizedBox(
               height: 24,
             ),
-            ListView.builder(
-              shrinkWrap: true,
-              itemCount: 4,
-              itemBuilder: (BuildContext context, int index) {
-                return Shimmer.fromColors(
-                  baseColor: Colors.grey
-                      .withOpacity(0.3), // Background color of the skeleton
-                  highlightColor: Colors.grey
-                      .withOpacity(0.1), // Highlight color of the skeleton
-                  child: Container(
-                    width: double.infinity,
-                    height: 270.0,
-                    margin: const EdgeInsets.only(bottom: 16),
-                    decoration: BoxDecoration(
-                      color: Colors.grey[300],
-                      borderRadius: BorderRadius.circular(16),
-                    ),
-                  ),
-                );
-              },
-            ),
-            for (String _ in ["1", "2", "3", "4"]) CommunityCard(),
+            CommunityCard(),
             const Padding(
-                padding: EdgeInsets.symmetric(vertical: 16),
-                child: CircularProgressIndicator(
-                  color: Color(0XFFBCDEFF),
-                ))
+              padding: EdgeInsets.symmetric(vertical: 16),
+              child: CircularProgressIndicator(
+                color: Color(0XFFBCDEFF),
+              ),
+            )
           ],
         ),
       ),

@@ -4,27 +4,35 @@ part 'community.g.dart';
 
 @JsonSerializable()
 class Community {
-  final int id;
-  final String? country;
-  final String? city;
-  final String? street;
-  final String? houseNumber;
-  final String? zipCode;
-  final String? additional;
+  int? id;
+  String? name;
+  int? categoryId;
+  int? userId;
+  String? groupType;
+  String? groupPrice;
+  String? description;
+  String? username;
+  String? image;
+  DateTime? createdAt;
+  DateTime? updatedAt;
 
-  @override
+    @override
   String toString() {
-    return 'Community{id: $id, country: $country, city: $city, street: $street, houseNumber: $houseNumber, zipCode: $zipCode, additional: $additional}';
+    return 'Community{id: $id, country: $name, description: $description}';
   }
 
-  const Community({
-    required this.id,
-    this.country,
-    this.city,
-    this.street,
-    this.houseNumber,
-    this.zipCode,
-    this.additional,
+  Community({
+    this.id,
+    this.name,
+    this.categoryId,
+    this.userId,
+    this.groupType,
+    this.groupPrice,
+    this.description,
+    this.username,
+    this.image,
+    this.createdAt,
+    this.updatedAt,
   });
 
   factory Community.fromJson(Map<String, dynamic> json) =>

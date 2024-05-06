@@ -1,4 +1,3 @@
-
 part of 'community_service.dart';
 
 // **************************************************************************
@@ -12,7 +11,7 @@ class _CommunityService implements CommunityService {
     this._dio, {
     this.baseUrl,
   }) {
-    baseUrl ??= 'https://dev-api.newtribe.nl:4456/api/';
+    baseUrl ??= 'https://api.founders.uz/api/v1/';
   }
 
   final Dio _dio;
@@ -20,20 +19,20 @@ class _CommunityService implements CommunityService {
   String? baseUrl;
 
   @override
-  Future<HttpResponse<Community>> getMyCommunity() async {
+  Future<HttpResponse<List<CommunityCategory>>> getCommunityCategory() async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final Map<String, dynamic>? _data = null;
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<Community>>(Options(
+    const Map<String, dynamic>? _data = null;
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<CommunityCategory>>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
             .compose(
               _dio.options,
-              'user',
+              'get-group-categories',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -42,8 +41,42 @@ class _CommunityService implements CommunityService {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-    final value = Community.fromJson(_result.data!);
-    final httpResponse = HttpResponse(value, _result);
+
+    List<dynamic> jsonList = _result.data!['data'] as List<dynamic>;
+    List<CommunityCategory> communities =
+        jsonList.map((json) => CommunityCategory.fromJson(json)).toList();
+    final httpResponse = HttpResponse(communities, _result);
+    return httpResponse;
+  }
+
+  @override
+  Future<HttpResponse<List<Community>>> getCommunity() async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<CommunityCategory>>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              'get-group',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+
+    List<dynamic> jsonList = _result.data!['data']['data'] as List<dynamic>;
+    List<Community> communities =
+        jsonList.map((json) => Community.fromJson(json)).toList();
+    final httpResponse = HttpResponse(communities, _result);
     return httpResponse;
   }
 

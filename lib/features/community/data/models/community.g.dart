@@ -7,21 +7,13 @@ part of 'community.dart';
 // **************************************************************************
 
 Community _$CommunityFromJson(Map<String, dynamic> json) => Community(
-      id: json['id'] as int,
-      country: json['country'] as String?,
-      city: json['city'] as String?,
-      street: json['street'] as String?,
-      houseNumber: json['houseNumber'] as String?,
-      zipCode: json['zipCode'] as String?,
-      additional: json['additional'] as String?,
+      id: json['id'] as int?,
+      name: json['name'] as String?,
+      description: json['description'] as String?,
     );
 
 Map<String, dynamic> _$CommunityToJson(Community instance) => <String, dynamic>{
       'id': instance.id,
-      'country': instance.country,
-      'city': instance.city,
-      'street': instance.street,
-      'houseNumber': instance.houseNumber,
-      'zipCode': instance.zipCode,
-      'additional': instance.additional,
+      'name': instance.name,
+      'description': instance.description,
     };
