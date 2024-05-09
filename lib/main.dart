@@ -1,7 +1,11 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:skool/core/resources/app_colors.dart';
+import 'package:skool/core/widgets/w_button.dart';
 import 'package:skool/features/community/presentation/pages/main.dart';
 
 void main() {
@@ -225,7 +229,8 @@ class _MyHomePageState extends State<MyHomePage> {
                             borderRadius: BorderRadius.circular(2),
                             boxShadow: [
                               BoxShadow(
-                                color: const Color(0xFF2A85FF).withOpacity(0.6), // Shadow color
+                                color: const Color(0xFF2A85FF)
+                                    .withOpacity(0.6), // Shadow color
                                 offset: const Offset(0, -1), // X 0 Y -1
                                 blurRadius: 7, // BLUR 7
                                 spreadRadius: 0, // Spread 0
@@ -313,44 +318,12 @@ class BottomSheetExample extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: TextButton(
-        style: ButtonStyle(
-          overlayColor: MaterialStateProperty.resolveWith<Color?>(
-            (Set<MaterialState> states) {
-              if (states.contains(MaterialState.hovered)) {
-                return Colors.transparent; // Remove hover effect
-              }
-              return Colors.transparent; // Default color when not hovered
-            },
-          ),
-        ),
-        child: SizedBox(
-          height: 28,
-          child: Row(
-            children: [
-              Image.asset(
-                "assets/image/logo.png",
-              ),
-              const SizedBox(
-                width: 12,
-              ),
-              const Text(
-                "Skool community",
-                style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w600,
-                    color: Color(0xFF000000)),
-              ),
-              const SizedBox(
-                width: 12,
-              ),
-              SvgPicture.asset(
-                "assets/svg/icon/arrow.svg",
-              ),
-            ],
-          ),
-        ),
-        onPressed: () {
+      child: WButton(
+        borderRadius: 4,
+        verticalPadding: 4,
+        horizontalPadding: 20,
+        text: "",
+        onTap: () => {
           showModalBottomSheet<void>(
             context: context,
             builder: (BuildContext context) {
@@ -366,17 +339,12 @@ class BottomSheetExample extends StatelessWidget {
                     mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: <Widget>[
-                      TextButton(
-                        style: ButtonStyle(
-                          shape:
-                              MaterialStateProperty.all<RoundedRectangleBorder>(
-                            RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(
-                                  4.0), // Adjust the value as needed
-                            ),
-                          ),
-                        ),
-                        onPressed: () => Navigator.pop(context),
+                      WButton(
+                        borderRadius: 4,
+                        verticalPadding: 4,
+                        horizontalPadding: 4,
+                        text: "",
+                        onTap: () => Navigator.pop(context),
                         child: SvgPicture.asset("assets/svg/icon/close.svg"),
                       ),
                       Container(
@@ -406,20 +374,14 @@ class BottomSheetExample extends StatelessWidget {
                         ),
                       ),
                       SizedBox(
-                        height: 56,
-                        child: TextButton(
-                          style: ButtonStyle(
-                            padding: MaterialStateProperty.all(
-                                const EdgeInsets.all(8.0)),
-                            shape: MaterialStateProperty.all<
-                                RoundedRectangleBorder>(
-                              RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(
-                                    4.0), // Adjust the value as needed
-                              ),
-                            ),
-                          ),
-                          onPressed: () => Navigator.pop(context),
+                        width: double.infinity,
+                        child: WButton(
+                          borderRadius: 4,
+                          verticalPadding: 16,
+                          horizontalPadding: 0,
+                          buttonPositionType: MainAxisAlignment.start,
+                          text: "",
+                          onTap: () => Navigator.pop(context),
                           child: Row(
                             children: [
                               SvgPicture.asset(
@@ -439,20 +401,14 @@ class BottomSheetExample extends StatelessWidget {
                         ),
                       ),
                       SizedBox(
-                        height: 56,
-                        child: TextButton(
-                          style: ButtonStyle(
-                            padding: MaterialStateProperty.all(
-                                const EdgeInsets.all(8.0)),
-                            shape: MaterialStateProperty.all<
-                                RoundedRectangleBorder>(
-                              RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(
-                                    4.0), // Adjust the value as needed
-                              ),
-                            ),
-                          ),
-                          onPressed: () => Navigator.pop(context),
+                        width: double.infinity,
+                        child: WButton(
+                          borderRadius: 4,
+                          verticalPadding: 16,
+                          horizontalPadding: 0,
+                          buttonPositionType: MainAxisAlignment.start,
+                          text: "",
+                          onTap: () => Navigator.pop(context),
                           child: Row(
                             children: [
                               SvgPicture.asset("assets/svg/modal/discover.svg"),
@@ -471,20 +427,14 @@ class BottomSheetExample extends StatelessWidget {
                         ),
                       ),
                       SizedBox(
-                        height: 56,
-                        child: TextButton(
-                          style: ButtonStyle(
-                            padding: MaterialStateProperty.all(
-                                const EdgeInsets.all(8.0)),
-                            shape: MaterialStateProperty.all<
-                                RoundedRectangleBorder>(
-                              RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(
-                                    4.0), // Adjust the value as needed
-                              ),
-                            ),
-                          ),
-                          onPressed: () => Navigator.pop(context),
+                        width: double.infinity,
+                        child: WButton(
+                          borderRadius: 4,
+                          verticalPadding: 16,
+                          horizontalPadding: 0,
+                          buttonPositionType: MainAxisAlignment.start,
+                          text: "",
+                          onTap: () => Navigator.pop(context),
                           child: Row(
                             children: [
                               Image.asset("assets/image/logo.png"),
@@ -501,14 +451,40 @@ class BottomSheetExample extends StatelessWidget {
                             ],
                           ),
                         ),
-                      )
+                      ),
                     ],
                   ),
                 ),
               );
             },
-          );
+          ),
         },
+        child: SizedBox(
+          height: 28,
+          child: Row(
+            children: [
+              Image.asset(
+                "assets/image/logo.png",
+              ),
+              const SizedBox(
+                width: 12,
+              ),
+              const Text(
+                "Skool community",
+                style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w600,
+                    color: Color(0xFF000000)),
+              ),
+              const SizedBox(
+                width: 12,
+              ),
+              SvgPicture.asset(
+                "assets/svg/icon/arrow.svg",
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }

@@ -7,6 +7,8 @@ import 'package:skool/core/widgets/w_button.dart';
 import 'package:skool/features/community/data/data_sources/community_service.dart';
 import 'package:skool/features/community/data/repositories/impl_community_repo.dart';
 import 'package:skool/features/community/presentation/bloc/community/community_bloc.dart';
+import 'package:skool/features/community/presentation/pages/comments.dart';
+import 'package:skool/features/community/presentation/pages/votes.dart';
 
 class CommunityCard extends StatelessWidget {
   CommunityCard({super.key});
@@ -232,12 +234,23 @@ class CommunityCard extends StatelessWidget {
                                               const SizedBox(
                                                 width: 12,
                                               ),
-                                              const Text(
-                                                "9 members have voted",
-                                                style: TextStyle(
-                                                    fontSize: 12,
-                                                    fontWeight: FontWeight.w500,
-                                                    color: Color(0xFF070707)),
+                                              WButton(
+                                                color: AppColors.white,
+                                                horizontalPadding: 0,
+                                                verticalPadding: 0,
+                                                fontSize: 12,
+                                                fontWeight: FontWeight.w500,
+                                                textColor: AppColors.c_07,
+                                                onTap: () => {
+                                                  Navigator.push(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          Votes(),
+                                                    ),
+                                                  ),
+                                                },
+                                                text: "9 members have voted",
                                               ),
                                             ],
                                           ),
@@ -278,7 +291,15 @@ class CommunityCard extends StatelessWidget {
                                                 color: AppColors.white,
                                                 horizontalPadding: 0,
                                                 verticalPadding: 0,
-                                                onTap: () => {},
+                                                onTap: () => {
+                                                  Navigator.push(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          Comments(),
+                                                    ),
+                                                  ),
+                                                },
                                                 text: "",
                                                 child: Row(
                                                   mainAxisSize: MainAxisSize
@@ -309,7 +330,15 @@ class CommunityCard extends StatelessWidget {
                                                 fontSize: 12,
                                                 fontWeight: FontWeight.w600,
                                                 textColor: AppColors.c_59,
-                                                onTap: () => {},
+                                                onTap: () => {
+                                                  Navigator.push(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          Comments(),
+                                                    ),
+                                                  ),
+                                                },
                                                 text: "New comment 10h ago",
                                               ),
                                             ],

@@ -29,6 +29,7 @@ class WTextField extends StatefulWidget {
   final EdgeInsets contentPadding;
   final String? label;
   final bool autoFocus;
+  final Color? borderColor;
 
   const WTextField({
     Key? key,
@@ -53,6 +54,7 @@ class WTextField extends StatefulWidget {
     this.hintFontSize = 14,
     this.label,
     this.autoFocus = false,
+    this.borderColor,
   }) : super(key: key);
 
   @override
@@ -91,7 +93,8 @@ class _WTextFieldState extends State<WTextField> {
             },
           ],
         ),
-        Padding(
+        Container(
+          height: widget.maxLines == 1 ? 40 : null,
           padding: const EdgeInsets.symmetric(vertical: 0),
           child: TextField(
             maxLines: widget.maxLines,
@@ -134,9 +137,9 @@ class _WTextFieldState extends State<WTextField> {
                   : widget.suffixIcon,
               filled: true,
               fillColor: AppColors.inputColor,
-              border: getBorder(),
-              enabledBorder: getBorder(),
-              focusedBorder: getBorder(),
+              border: getBorder(color: widget.borderColor),
+              enabledBorder: getBorder(color: widget.borderColor),
+              focusedBorder: getBorder(color: widget.borderColor),
               errorBorder: getBorder(color: AppColors.danger),
               contentPadding: widget.contentPadding,
               counterText: "",
