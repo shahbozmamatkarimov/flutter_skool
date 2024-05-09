@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 import '../resources/app_colors.dart';
 import '../resources/styles.dart';
@@ -9,6 +10,7 @@ class WButton extends StatefulWidget {
   final String text;
   final GestureTapCallback onTap;
   final Color color;
+  final Color textColor;
   final double borderRadius;
   final bool showLoader;
   final double verticalPadding;
@@ -18,22 +20,29 @@ class WButton extends StatefulWidget {
   final bool disabled;
   final TextStyle? textStyle;
   final EdgeInsets margin;
+  final double fontSize;
+  final FontWeight fontWeight;
+  final MainAxisAlignment buttonPositionType;
 
-  const WButton({
-    Key? key,
-    required this.text,
-    required this.onTap,
-    this.color = AppColors.primaryColor,
-    this.borderRadius = 10.0,
-    this.showLoader = false,
-    this.verticalPadding = 16,
-    this.horizontalPadding = 16,
-    this.buttonType = ButtonType.filled,
-    this.child,
-    this.disabled = false,
-    this.textStyle,
-    this.margin = EdgeInsets.zero,
-  }) : super(key: key);
+  const WButton(
+      {Key? key,
+      required this.text,
+      required this.onTap,
+      this.color = AppColors.white,
+      this.borderRadius = 10.0,
+      this.showLoader = false,
+      this.verticalPadding = 16,
+      this.horizontalPadding = 16,
+      this.buttonType = ButtonType.filled,
+      this.child,
+      this.disabled = false,
+      this.textStyle,
+      this.margin = EdgeInsets.zero,
+      this.fontSize = 16,
+      this.textColor = AppColors.black,
+      this.fontWeight = FontWeight.w400,
+      this.buttonPositionType = MainAxisAlignment.center})
+      : super(key: key);
 
   @override
   State<WButton> createState() => _WButtonState();
@@ -74,7 +83,7 @@ class _WButtonState extends State<WButton> {
             ),
             child: Row(
               mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: widget.buttonPositionType,
               children: [
                 if (!widget.showLoader) ...{
                   widget.child != null
@@ -85,13 +94,13 @@ class _WButtonState extends State<WButton> {
                           style: widget.textStyle ??
                               (widget.buttonType == ButtonType.filled
                                   ? Styles.getButtonStyle().copyWith(
-                                      fontSize: 15,
-                                      color: AppColors.white,
-                                      fontWeight: FontWeight.w500,
+                                      fontSize: widget.fontSize,
+                                      color: widget.textColor,
+                                      fontWeight: widget.fontWeight,
                                     )
                                   : Styles.getButtonStyle().copyWith(
                                       fontSize: 15,
-                                      fontWeight: FontWeight.w500,
+                                      fontWeight: widget.fontWeight,
                                     )),
                         ),
                 } else ...{

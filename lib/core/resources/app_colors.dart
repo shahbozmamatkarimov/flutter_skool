@@ -13,8 +13,13 @@ class AppColors {
   static const Color inputColor = Color(0xFFFFFFFF);
   static const Color backgroundColor = Color(0xFFFFFFFF);
 
-  static const Color C999999 = Color(0xFF999999);
-  static const Color C_CACACA = Color(0xFFCACACA);
+  static const Color c_07 = Color(0xFF070707);
+  static const Color c_bc = Color(0xFFBCDEFF);
+  static const Color c_2a = Color(0xFF2A85FF);
+  static const Color c_59 = Color(0xFF59ACFF);
+  static const Color c_a1 = Color(0xFFA1A1A1);
+  static const Color c_e0 = Color(0xFFE0E0E0);
+  static const Color c_f2 = Color(0xFFF2F2F2);
 
   static const Color danger = Color(0xFFFF4D4D);
   static const Color removeColor = Color(0xFFFF002E);

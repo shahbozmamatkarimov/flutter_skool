@@ -28,6 +28,7 @@ class WTextField extends StatefulWidget {
   final double hintFontSize;
   final EdgeInsets contentPadding;
   final String? label;
+  final bool autoFocus;
 
   const WTextField({
     Key? key,
@@ -47,10 +48,11 @@ class WTextField extends StatefulWidget {
     this.suffixIcon,
     this.onSubmitted,
     this.onChanged,
-    this.contentPadding = const EdgeInsets.symmetric(horizontal: 16),
+    this.contentPadding = const EdgeInsets.symmetric(horizontal: 12),
     this.readOnly = false,
     this.hintFontSize = 14,
     this.label,
+    this.autoFocus = false,
   }) : super(key: key);
 
   @override
@@ -90,7 +92,7 @@ class _WTextFieldState extends State<WTextField> {
           ],
         ),
         Padding(
-          padding: const EdgeInsets.symmetric(vertical: 7),
+          padding: const EdgeInsets.symmetric(vertical: 0),
           child: TextField(
             maxLines: widget.maxLines,
             readOnly: widget.readOnly,
@@ -102,6 +104,7 @@ class _WTextFieldState extends State<WTextField> {
             obscureText: widget.isObscure && !toggle,
             maxLength: widget.maxLength,
             onChanged: widget.onChanged,
+            autofocus: widget.autoFocus,
             decoration: InputDecoration(
               errorText: widget.errorText != null ? "" : null,
               prefixIcon: widget.prefixIcon,
@@ -113,14 +116,14 @@ class _WTextFieldState extends State<WTextField> {
                               width: 24,
                               height: 24,
                               colorFilter: const ColorFilter.mode(
-                                  AppColors.C999999, BlendMode.srcIn),
+                                  AppColors.c_07, BlendMode.srcIn),
                             )
                           : SvgPicture.asset(
                               AppIcons.eye,
                               width: 24,
                               height: 24,
                               colorFilter: const ColorFilter.mode(
-                                  AppColors.C999999, BlendMode.srcIn),
+                                  AppColors.c_07, BlendMode.srcIn),
                             ),
                       onPressed: () {
                         setState(() {
@@ -139,7 +142,7 @@ class _WTextFieldState extends State<WTextField> {
               counterText: "",
               hintText: widget.hint,
               hintStyle: Styles.getTextStyle(
-                color: AppColors.C999999,
+                color: AppColors.c_a1,
                 letterSpacing: 1,
                 fontSize: widget.hintFontSize,
               ),
@@ -147,7 +150,7 @@ class _WTextFieldState extends State<WTextField> {
                   Styles.getTextStyle(fontSize: 8, color: AppColors.danger),
             ),
             textInputAction: widget.textInputAction,
-            cursorColor: AppColors.primaryColor,
+            cursorColor: AppColors.c_f2,
             keyboardType: widget.keyboardType,
             inputFormatters: widget.formatters,
           ),
@@ -157,7 +160,7 @@ class _WTextFieldState extends State<WTextField> {
   }
 
   getBorder({Color? color}) => OutlineInputBorder(
-        borderSide: BorderSide(color: color ?? AppColors.C_CACACA, width: 1),
-        borderRadius: BorderRadius.circular(10),
+        borderSide: BorderSide(color: color ?? AppColors.c_f2, width: 1),
+        borderRadius: BorderRadius.circular(4),
       );
 }

@@ -36,12 +36,12 @@ class _CommunityMainPageState extends State<CommunityMainPage>
             height: 12,
           ),
           Container(
-            margin: const EdgeInsets.only(left: 20, top: 0),
+            padding: const EdgeInsets.only(left: 20, top: 0),
             height: 40,
             child: TabBar(
+              tabAlignment: TabAlignment.start,
               controller: controllerForMainTabVarView,
-              indicatorSize: TabBarIndicatorSize
-                  .label,
+              indicatorSize: TabBarIndicatorSize.label,
               indicatorWeight: 2,
               dividerColor: const Color(0xFFBCDEFF),
               isScrollable: true,
@@ -50,7 +50,9 @@ class _CommunityMainPageState extends State<CommunityMainPage>
               unselectedLabelStyle: const TextStyle(
                 fontWeight: FontWeight.w400,
               ),
-              labelPadding: const EdgeInsets.symmetric(horizontal: 16),
+              labelPadding: const EdgeInsets.only(right: 32),
+              overlayColor:
+                  MaterialStateProperty.all<Color>(Colors.transparent),
               labelStyle: const TextStyle(
                 fontWeight: FontWeight.w700,
               ),

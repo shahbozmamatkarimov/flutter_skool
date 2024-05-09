@@ -50,7 +50,10 @@ flutter:
     - assets/svg/
     - assets/svg/icon/
     - assets/svg/home/
+    - assets/svg/classroom/
+    - assets/svg/members/
     - assets/svg/lang/
+    - assets/svg/post/
     - assets/svg/modal/
     - assets/svg/bnavigation/
     - assets/image/

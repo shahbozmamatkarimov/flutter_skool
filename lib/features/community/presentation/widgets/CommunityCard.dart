@@ -2,6 +2,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
+import 'package:skool/core/resources/app_colors.dart';
+import 'package:skool/core/widgets/w_button.dart';
 import 'package:skool/features/community/data/data_sources/community_service.dart';
 import 'package:skool/features/community/data/repositories/impl_community_repo.dart';
 import 'package:skool/features/community/presentation/bloc/community/community_bloc.dart';
@@ -73,31 +75,27 @@ class CommunityCard extends StatelessWidget {
                                 height: 21,
                                 width: 21,
                               ),
-                              TextButton(
-                                style: TextButton.styleFrom(
-                                  backgroundColor: const Color(0xFFFFFFFF),
-                                  shape: const RoundedRectangleBorder(
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(4)),
-                                  ),
-                                  padding:
-                                      EdgeInsets.zero, // Remove default padding
-                                ),
-                                onPressed: () => {},
+                              WButton(
+                                borderRadius: 4,
+                                color: AppColors.white,
+                                horizontalPadding: 0,
+                                verticalPadding: 0,
+                                fontSize: 12,
+                                onTap: () => {},
+                                text: "",
                                 child: const Row(
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
                                     Icon(
                                       Icons.visibility_off,
                                       size: 18,
-                                      color: Color(0xFF2A85FF),
+                                      color: AppColors.c_2a,
                                     ),
                                     SizedBox(width: 4),
                                     Text(
                                       'Hide',
                                       style: TextStyle(
-                                          fontSize: 12,
-                                          color: Color(0xFF2A85FF)),
+                                          fontSize: 12, color: AppColors.c_2a),
                                     ),
                                   ],
                                 ),
@@ -204,18 +202,14 @@ class CommunityCard extends StatelessWidget {
                                         children: [
                                           Row(
                                             children: [
-                                              TextButton(
-                                                style: TextButton.styleFrom(
-                                                  backgroundColor:
-                                                      const Color(0xFFBCDEFF),
-                                                  shape:
-                                                      const RoundedRectangleBorder(
-                                                    borderRadius:
-                                                        BorderRadius.all(
-                                                            Radius.circular(4)),
-                                                  ),
-                                                ),
-                                                onPressed: () => {},
+                                              WButton(
+                                                borderRadius: 4,
+                                                color: AppColors.c_bc,
+                                                horizontalPadding: 8,
+                                                verticalPadding: 4,
+                                                fontSize: 12,
+                                                onTap: () => {},
+                                                text: "",
                                                 child: Row(
                                                   mainAxisSize: MainAxisSize
                                                       .min, // Use minimum main axis size
@@ -229,8 +223,8 @@ class CommunityCard extends StatelessWidget {
                                                       'Poll',
                                                       style: TextStyle(
                                                           fontSize: 12,
-                                                          color: Color(
-                                                              0xFF070707)),
+                                                          color:
+                                                              AppColors.c_07),
                                                     ),
                                                   ],
                                                 ),
@@ -252,22 +246,12 @@ class CommunityCard extends StatelessWidget {
                                           ),
                                           Row(
                                             children: [
-                                              ElevatedButton(
-                                                style: ButtonStyle(
-                                                  padding:
-                                                      MaterialStateProperty.all(
-                                                          const EdgeInsets.all(
-                                                              8.0)),
-                                                  elevation:
-                                                      MaterialStateProperty.all(
-                                                          0), // Remove shadow
-
-                                                  backgroundColor:
-                                                      MaterialStateProperty.all(
-                                                    const Color(0xFFFFFFFF),
-                                                  ), // Change background color
-                                                ),
-                                                onPressed: () => {},
+                                              WButton(
+                                                color: AppColors.white,
+                                                horizontalPadding: 0,
+                                                verticalPadding: 0,
+                                                onTap: () => {},
+                                                text: "",
                                                 child: Row(
                                                   mainAxisSize: MainAxisSize
                                                       .min, // Use minimum main axis size
@@ -290,22 +274,12 @@ class CommunityCard extends StatelessWidget {
                                               const SizedBox(
                                                 width: 16,
                                               ),
-                                              ElevatedButton(
-                                                style: ButtonStyle(
-                                                  padding:
-                                                      MaterialStateProperty.all(
-                                                          const EdgeInsets.all(
-                                                              8.0)),
-                                                  elevation:
-                                                      MaterialStateProperty.all(
-                                                          0), // Remove shadow
-
-                                                  backgroundColor:
-                                                      MaterialStateProperty.all(
-                                                    const Color(0xFFFFFFFF),
-                                                  ), // Change background color
-                                                ),
-                                                onPressed: () => {},
+                                              WButton(
+                                                color: AppColors.white,
+                                                horizontalPadding: 0,
+                                                verticalPadding: 0,
+                                                onTap: () => {},
+                                                text: "",
                                                 child: Row(
                                                   mainAxisSize: MainAxisSize
                                                       .min, // Use minimum main axis size
@@ -328,38 +302,15 @@ class CommunityCard extends StatelessWidget {
                                               const SizedBox(
                                                 width: 16,
                                               ),
-                                              ElevatedButton(
-                                                style: ButtonStyle(
-                                                  padding:
-                                                      MaterialStateProperty.all(
-                                                          const EdgeInsets.all(
-                                                              8.0)),
-                                                  elevation:
-                                                      MaterialStateProperty.all(
-                                                          0), // Remove shadow
-
-                                                  backgroundColor:
-                                                      MaterialStateProperty.all(
-                                                    const Color(0xFFFFFFFF),
-                                                  ), // Change background color
-                                                ),
-                                                onPressed: () => {},
-                                                child: const Row(
-                                                  mainAxisSize: MainAxisSize
-                                                      .min, // Use minimum main axis size
-                                                  children: [
-                                                    // Add some space between icon and text
-                                                    Text(
-                                                      'New comment 10h ago',
-                                                      style: TextStyle(
-                                                          fontSize: 12,
-                                                          fontWeight:
-                                                              FontWeight.w600,
-                                                          color: Color(
-                                                              0xFF59ACFF)),
-                                                    ),
-                                                  ],
-                                                ),
+                                              WButton(
+                                                color: AppColors.white,
+                                                horizontalPadding: 0,
+                                                verticalPadding: 0,
+                                                fontSize: 12,
+                                                fontWeight: FontWeight.w600,
+                                                textColor: AppColors.c_59,
+                                                onTap: () => {},
+                                                text: "New comment 10h ago",
                                               ),
                                             ],
                                           ),
@@ -372,7 +323,7 @@ class CommunityCard extends StatelessWidget {
                                         width: 20,
                                       ),
                                       Transform.translate(
-                                        offset: const Offset(0.0, 8.0),
+                                        offset: const Offset(0.0, 0.0),
                                         child: ClipRRect(
                                           borderRadius:
                                               BorderRadius.circular(12.0),

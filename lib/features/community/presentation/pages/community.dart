@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:shimmer/shimmer.dart';
+import 'package:skool/core/resources/app_colors.dart';
+import 'package:skool/core/widgets/w_button.dart';
 import 'package:skool/features/community/data/data_sources/community_service.dart';
 import 'package:skool/features/community/data/repositories/impl_community_repo.dart';
 import 'package:skool/features/community/presentation/bloc/community_category/community_category_bloc.dart';
+import 'package:skool/features/community/presentation/pages/write_post.dart';
 import 'package:skool/features/community/presentation/widgets/CommunityCard.dart';
 
 class CommunityPage extends StatelessWidget {
@@ -19,18 +22,23 @@ class CommunityPage extends StatelessWidget {
         padding: const EdgeInsets.all(20),
         child: Column(
           children: [
-            TextButton(
-              style: TextButton.styleFrom(
-                backgroundColor: const Color(0xFFFFFFFF),
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                shape: const RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(16)),
-                ),
-              ),
-              onPressed: () => {},
-              child: SizedBox(
-                height: 52,
-                width: MediaQuery.of(context).size.width,
+            SizedBox(
+              width: double.infinity,
+              child: WButton(
+                borderRadius: 16,
+                color: AppColors.white,
+                horizontalPadding: 20,
+                buttonPositionType: MainAxisAlignment.start,
+                verticalPadding: 12,
+                onTap: () => {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => WritePost(),
+                    ),
+                  ),
+                },
+                text: "",
                 child: const Row(
                   mainAxisSize: MainAxisSize.min, // Use minimum main axis size
                   children: [
@@ -103,41 +111,25 @@ class CommunityPage extends StatelessWidget {
                               spacing: 12.0,
                               runSpacing: 12.0,
                               children: [
-                                TextButton(
-                                  style: ButtonStyle(
-                                    padding: MaterialStateProperty.all(
-                                        const EdgeInsets.all(8.0)),
-                                    backgroundColor: MaterialStateProperty.all(
-                                      const Color(0xFFBCDEFF),
-                                    ),
-                                  ),
-                                  onPressed: () => {},
-                                  child: const Text(
-                                    "All",
-                                    style: TextStyle(
-                                      color: Color(0xFF070707),
-                                      fontSize: 12,
-                                    ),
-                                  ),
+                                WButton(
+                                  borderRadius: 20,
+                                  color: const Color(0xFFBCDEFF),
+                                  textColor: AppColors.c_07,
+                                  horizontalPadding: 8,
+                                  verticalPadding: 8,
+                                  fontSize: 12,
+                                  onTap: () => {},
+                                  text: "All",
                                 ),
                                 for (var i in community)
-                                  TextButton(
-                                    style: ButtonStyle(
-                                      padding: MaterialStateProperty.all(
-                                          const EdgeInsets.all(8.0)),
-                                      backgroundColor:
-                                          MaterialStateProperty.all(
-                                        const Color(0xFFBCDEFF),
-                                      ),
-                                    ),
-                                    onPressed: () => {},
-                                    child: Text(
-                                      "${i.name}",
-                                      style: const TextStyle(
-                                        color: Color(0xFF070707),
-                                        fontSize: 12,
-                                      ),
-                                    ),
+                                  WButton(
+                                    borderRadius: 20,
+                                    color: AppColors.white,
+                                    horizontalPadding: 8,
+                                    verticalPadding: 8,
+                                    fontSize: 12,
+                                    onTap: () => {},
+                                    text: "${i.name}",
                                   ),
                               ],
                             ),
@@ -157,39 +149,26 @@ class CommunityPage extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.end,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      SizedBox(
-                        width: 34,
-                        height: 34,
-                        child: TextButton(
-                          style: ButtonStyle(
-                            padding: MaterialStateProperty.all(
-                                const EdgeInsets.all(8.0)),
-                            backgroundColor: MaterialStateProperty.all(
-                              const Color(0xFFFFFFFF),
-                            ), // Change background color
-                          ),
-                          onPressed: () => {},
-                          child: SvgPicture.asset("assets/svg/icon/filter.svg"),
-                        ),
+                      WButton(
+                        borderRadius: 20,
+                        color: AppColors.white,
+                        horizontalPadding: 9,
+                        verticalPadding: 9,
+                        onTap: () => {},
+                        text: "",
+                        child: SvgPicture.asset("assets/svg/icon/filter.svg"),
                       ),
                       const SizedBox(
                         height: 8,
                       ),
-                      TextButton(
-                        style: ButtonStyle(
-                          padding: MaterialStateProperty.all(
-                              const EdgeInsets.all(8.0)),
-                          backgroundColor: MaterialStateProperty.all(
-                            const Color(0xFFFFFFFF),
-                          ), // Change background color
-                        ),
-                        onPressed: () => {},
-                        child: const Text(
-                          "More...",
-                          style: TextStyle(
-                            fontSize: 12,
-                          ),
-                        ),
+                      WButton(
+                        borderRadius: 20,
+                        color: AppColors.white,
+                        horizontalPadding: 8,
+                        verticalPadding: 8,
+                        fontSize: 12,
+                        onTap: () => {},
+                        text: "More...",
                       ),
                     ],
                   ),
