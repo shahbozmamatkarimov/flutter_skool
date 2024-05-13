@@ -41,20 +41,49 @@ class Votes extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: List.generate(
               9,
-              (index) => const Padding(
-                padding: EdgeInsets.only(bottom: 20),
+              (index) => Padding(
+                padding: const EdgeInsets.only(bottom: 20),
                 child: Row(
                   children: [
-                    CircleAvatar(
-                      radius: 20, // Set the radius of the circle
-                      backgroundImage: NetworkImage(
-                        'https://picsum.photos/250?image=9',
-                      ),
+                    Stack(
+                      clipBehavior: Clip.none,
+                      children: <Widget>[
+                        const CircleAvatar(
+                          radius: 20, // Set the radius of the circle
+                          backgroundImage: NetworkImage(
+                            'https://picsum.photos/250?image=9',
+                          ),
+                        ),
+                        Positioned(
+                          bottom: -2,
+                          right: -12,
+                          child: Stack(
+                            clipBehavior: Clip.none,
+                            children: <Widget>[
+                              SvgPicture.asset("assets/svg/icon/user_step.svg"),
+                              const Positioned(
+                                left: 0,
+                                right: 0,
+                                top: 0,
+                                child: Center(
+                                    child: Text(
+                                  "1",
+                                  style: TextStyle(
+                                    fontSize: 10,
+                                    fontWeight: FontWeight.w500,
+                                    color: AppColors.white,
+                                  ),
+                                )),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 16,
                     ),
-                    Column(
+                    const Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
