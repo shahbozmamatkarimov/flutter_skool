@@ -58,7 +58,7 @@ class WMenuItem extends StatelessWidget {
           ),
           SizedBox(height: scalingFactor.$1 * 6),
           if (isBordered) ...{
-            Divider(color: AppColors.C_CACACA.withOpacity(0.4), thickness: 1),
+            Divider(color: AppColors.c_07.withOpacity(0.4), thickness: 1),
           },
         ],
       ),

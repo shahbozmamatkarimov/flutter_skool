@@ -30,7 +30,7 @@ class WTextLink extends StatelessWidget {
           style: Styles.getTextStyle(
             fontSize: fontSize ?? 14,
             fontWeight: fontWeight ?? FontWeight.w500,
-            color: color ?? AppColors.C999999,
+            color: color ?? AppColors.c_07,
           ),
         ),
       ),

@@ -26,7 +26,7 @@ class WAppBar extends StatelessWidget implements PreferredSizeWidget {
         border: isBordered
             ? Border(
                 bottom: BorderSide(
-                  color: AppColors.C_CACACA.withOpacity(0.4),
+                  color: AppColors.c_07.withOpacity(0.4),
                 ),
               )
             : null,
