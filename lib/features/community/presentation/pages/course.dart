@@ -1,383 +1,457 @@
-import 'package:accordion/accordion.dart';
-import 'package:accordion/controllers.dart';
+import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:skool/core/resources/app_colors.dart';
+import 'package:skool/core/widgets/w_button.dart';
+import 'package:skool/features/community/presentation/pages/module.dart';
 
-/// Main example page
-class CoursePage extends StatelessWidget //__
-{
-  static const headerStyle = TextStyle(
-      color: Color(0xffffffff), fontSize: 18, fontWeight: FontWeight.bold);
-  static const contentStyleHeader = TextStyle(
-      color: Color(0xff999999), fontSize: 14, fontWeight: FontWeight.w700);
-  static const contentStyle = TextStyle(
-      color: Color(0xff999999), fontSize: 14, fontWeight: FontWeight.normal);
-  static const loremIpsum =
-      '''Lorem ipsum is typically a corrupted version of 'De finibus bonorum et malorum', a 1st century BC text by the Roman statesman and philosopher Cicero, with words altered, added, and removed to make it nonsensical and improper Latin.''';
-  static const slogan =
-      'Do not forget to play around with all sorts of colors, backgrounds, borders, etc.';
+// class CoursePage extends StatefulWidget {
+//   const CoursePage({super.key});
 
+//   @override
+//   State<CoursePage> createState() => _CoursePageState();
+// }
+class CoursePage extends StatefulWidget {
   const CoursePage({super.key});
 
   @override
+  State<CoursePage> createState() => _CoursePageState();
+}
+
+/// Main example page
+class _CoursePageState extends State<CoursePage> {
+  final List<String> courseDropdown = [
+    "Edit course",
+    "Add set",
+    "Add modul",
+    "Delete course",
+  ];
+
+  final List<String> setDropdown = [
+    "Edit set",
+    "Delete set",
+    "Add modul in set",
+  ];
+
+  final List<List<Map<String, dynamic>>> courseModules = [
+    [
+      {
+        "isExpanded": false,
+        "moduleName": "Name1",
+        "lessons": ["Hello", "Hi"]
+      },
+    ],
+    [
+      {
+        "isExpanded": false,
+        "moduleName": "Name2",
+        "lessons": ["Hello", "Hi"]
+      },
+    ],
+    [
+      {
+        "isExpanded": false,
+        "moduleName": "Name3",
+        "lessons": ["Hello", "Hi"]
+      },
+    ],
+    [
+      {
+        "isExpanded": false,
+        "moduleName": "Name4",
+        "lessons": ["Hello", "Hi"]
+      },
+    ],
+    [
+      {
+        "isExpanded": false,
+        "moduleName": "Name5",
+        "lessons": ["Hello", "Hi"]
+      },
+    ],
+    [
+      {
+        "isExpanded": false,
+        "moduleName": "Name",
+        "lessons": ["Hello", "Hi"]
+      },
+    ],
+    [
+      {
+        "isExpanded": false,
+        "moduleName": "Name",
+        "lessons": ["Hello", "Hi"]
+      },
+    ],
+    [
+      {
+        "isExpanded": false,
+        "moduleName": "Name",
+        "lessons": ["Hello", "Hi"]
+      },
+    ],
+    [
+      {
+        "isExpanded": false,
+        "moduleName": "Name",
+        "lessons": ["Hello", "Hi"]
+      },
+    ],
+    [
+      {
+        "isExpanded": false,
+        "moduleName": "Name",
+        "lessons": ["Hello", "Hi"]
+      },
+    ],
+    [
+      {
+        "isExpanded": false,
+        "moduleName": "Name",
+        "lessons": ["Hello", "Hi"]
+      },
+    ],
+    [
+      {
+        "isExpanded": false,
+        "moduleName": "Name",
+        "lessons": ["Hello", "Hi"]
+      },
+    ],
+  ];
+
+  @override
   build(context) => Scaffold(
-        backgroundColor: Colors.blueGrey[100],
+        // backgroundColor: Colors.blueGrey[100],
         appBar: AppBar(
-          title: const Text('Accordion'),
-        ),
-        body: Accordion(
-          headerBorderColor: Colors.blueGrey,
-          headerBorderColorOpened: Colors.transparent,
-          // headerBorderWidth: 1,
-          headerBackgroundColorOpened: Colors.green,
-          contentBackgroundColor: Colors.white,
-          contentBorderColor: Colors.green,
-          contentBorderWidth: 3,
-          contentHorizontalPadding: 20,
-          scaleWhenAnimating: true,
-          openAndCloseAnimation: true,
-          headerPadding:
-              const EdgeInsets.symmetric(vertical: 7, horizontal: 15),
-          sectionOpeningHapticFeedback: SectionHapticFeedback.heavy,
-          sectionClosingHapticFeedback: SectionHapticFeedback.light,
-          children: [
-            AccordionSection(
-              isOpen: true,
-              contentVerticalPadding: 20,
-              leftIcon:
-                  const Icon(Icons.text_fields_rounded, color: Colors.white),
-              header: const Text('Simple Text', style: headerStyle),
-              content: const Text(loremIpsum, style: contentStyle),
-            ),
-            AccordionSection(
-              isOpen: true,
-              leftIcon: const Icon(Icons.input, color: Colors.white),
-              header: const Text('Text Field & Button', style: headerStyle),
-              contentHorizontalPadding: 40,
-              contentVerticalPadding: 20,
-              content: const MyInputForm(),
-            ),
-            AccordionSection(
-              isOpen: true,
-              leftIcon:
-                  const Icon(Icons.child_care_rounded, color: Colors.white),
-              header: const Text('Nested Accordion', style: headerStyle),
-              content: const MyNestedAccordion(),
-            ),
-            AccordionSection(
-              isOpen: false,
-              leftIcon: const Icon(Icons.shopping_cart, color: Colors.white),
-              header: const Text('DataTable', style: headerStyle),
-              content: const MyDataTable(),
-            ),
-            AccordionSection(
-              isOpen: false,
-              // leftIcon:
-              //     const Icon(Icons.circle_outlined, color: Colors.black54),
-              rightIcon: const Icon(
-                Icons.keyboard_arrow_down,
-                color: AppColors.c_07,
-                size: 16,
-              ),
-              headerBackgroundColor: AppColors.white,
-              headerBackgroundColorOpened: AppColors.c_f0,
-              headerBorderRadius: 0,
-              // headerBorderColor: Colors.black54,
-              // headerBorderColorOpened: Colors.black54,
-              // headerBorderWidth: 1,
-              contentBackgroundColor: AppColors.c_f0,
-              contentBorderColor: AppColors.transparent,
-              contentBorderWidth: 0,
-              contentVerticalPadding: 12,
-              contentHorizontalPadding: 20,
-              header: const Text(
-                'How Skool works',
-                style: TextStyle(
-                  color: AppColors.c_07,
-                  fontSize: 14,
-                ),
-              ),
-              content: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Icon(
-                    Icons.label_important_outline_rounded,
-                    size: 50,
-                  ).paddingOnly(right: 20),
-                  const Flexible(
-                    child: Text(
-                      slogan,
-                      maxLines: 4,
-                      style: TextStyle(color: Colors.black45, fontSize: 17),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            AccordionSection(
-              isOpen: false,
-              leftIcon: const Icon(Icons.circle, color: Colors.white),
-              headerBackgroundColor: Colors.deepOrange,
-              headerBackgroundColorOpened: Colors.brown,
-              headerBorderWidth: 1,
-              contentBackgroundColor: Colors.brown,
-              contentBorderWidth: 0,
-              contentVerticalPadding: 30,
-              header: const Text('Custom: Other Colors', style: headerStyle),
-              content: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Icon(
-                    Icons.label_important_outline_rounded,
-                    size: 50,
-                    color: Colors.white54,
-                  ).paddingOnly(right: 20),
-                  const Flexible(
-                    child: Text(
-                      slogan,
-                      maxLines: 4,
-                      style: TextStyle(color: Colors.white54, fontSize: 17),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            AccordionSection(
-              isOpen: false,
-              leftIcon: const Icon(Icons.circle, color: Colors.white),
-              headerBackgroundColor: Colors.green[900],
-              headerBackgroundColorOpened: Colors.lightBlue,
-              headerBorderColorOpened: Colors.yellow,
-              headerBorderWidth: 10,
-              contentBackgroundColor: Colors.lightBlue,
-              contentBorderColor: Colors.yellow,
-              contentBorderWidth: 10,
-              contentVerticalPadding: 30,
-              header: const Text('Custom: Heavy Borders', style: headerStyle),
-              content: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Icon(
-                    Icons.label_important_outline_rounded,
-                    size: 50,
-                    color: Colors.white54,
-                  ).paddingOnly(right: 20),
-                  const Flexible(
-                    child: Text(
-                      slogan,
-                      maxLines: 4,
-                      style: TextStyle(color: Colors.white54, fontSize: 17),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            AccordionSection(
-              isOpen: false,
-              leftIcon: const Icon(Icons.circle, color: Colors.white),
-              headerBorderRadius: 30,
-              headerBackgroundColor: Colors.purple,
-              headerBackgroundColorOpened: Colors.purple,
-              headerBorderColorOpened: Colors.white,
-              headerBorderWidth: 2,
-              contentBackgroundColor: Colors.purple,
-              contentBorderColor: Colors.white,
-              contentBorderWidth: 2,
-              contentBorderRadius: 100,
-              contentVerticalPadding: 30,
-              header: const Text('Custom: Very Round', style: headerStyle),
-              content: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Icon(
-                    Icons.label_important_outline_rounded,
-                    size: 50,
-                    color: Colors.white54,
-                  ).paddingOnly(right: 20),
-                  const Flexible(
-                    child: Text(
-                      slogan,
-                      maxLines: 4,
-                      style: TextStyle(color: Colors.white54, fontSize: 17),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            AccordionSection(
-              isOpen: false,
-              leftIcon: const Icon(Icons.circle, color: Colors.white),
-              headerBorderRadius: 0,
-              headerBackgroundColor: Colors.black87,
-              headerBackgroundColorOpened: Colors.black87,
-              headerBorderColorOpened: const Color(0xffaaaaaa),
-              headerBorderWidth: 1,
-              contentBackgroundColor: Colors.black54,
-              contentBorderColor: const Color(0xffaaaaaa),
-              contentBorderWidth: 1,
-              contentBorderRadius: 0,
-              contentVerticalPadding: 30,
-              header: const Text('Android', style: headerStyle),
-              content: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Icon(
-                    Icons.label_important_outline_rounded,
-                    size: 50,
-                    color: Colors.white54,
-                  ).paddingOnly(right: 20),
-                  const Flexible(
-                    child: Text(
-                      slogan,
-                      maxLines: 4,
-                      style: TextStyle(color: Colors.white54, fontSize: 17),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-      );
-} //__
-
-class MyInputForm extends StatelessWidget //__
-{
-  const MyInputForm({super.key});
-
-  @override
-  Widget build(context) //__
-  {
-    return Column(
-      children: [
-        TextFormField(
-          decoration: InputDecoration(
-            label: const Text('Some text goes here ...'),
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10),
-            ),
-          ),
-        ).marginOnly(bottom: 10),
-        ElevatedButton(
-          onPressed: () {},
-          child: const Text('Submit'),
-        )
-      ],
-    );
-  }
-}
-
-class MyDataTable extends StatelessWidget //__
-{
-  const MyDataTable({super.key});
-
-  @override
-  Widget build(context) //__
-  {
-    return DataTable(
-      sortAscending: true,
-      sortColumnIndex: 1,
-      showBottomBorder: false,
-      columns: const [
-        DataColumn(
-            label: Text('ID', style: CoursePage.contentStyleHeader),
-            numeric: true),
-        DataColumn(
-            label: Text('Description', style: CoursePage.contentStyleHeader)),
-        DataColumn(
-            label: Text('Price', style: CoursePage.contentStyleHeader),
-            numeric: true),
-      ],
-      rows: const [
-        DataRow(
-          cells: [
-            DataCell(Text('1',
-                style: CoursePage.contentStyle, textAlign: TextAlign.right)),
-            DataCell(Text('Fancy Product', style: CoursePage.contentStyle)),
-            DataCell(Text(r'$ 199.99',
-                style: CoursePage.contentStyle, textAlign: TextAlign.right))
-          ],
-        ),
-        DataRow(
-          cells: [
-            DataCell(Text('2',
-                style: CoursePage.contentStyle, textAlign: TextAlign.right)),
-            DataCell(Text('Another Product', style: CoursePage.contentStyle)),
-            DataCell(Text(r'$ 79.00',
-                style: CoursePage.contentStyle, textAlign: TextAlign.right))
-          ],
-        ),
-        DataRow(
-          cells: [
-            DataCell(Text('3',
-                style: CoursePage.contentStyle, textAlign: TextAlign.right)),
-            DataCell(Text('Really Cool Stuff', style: CoursePage.contentStyle)),
-            DataCell(Text(r'$ 9.99',
-                style: CoursePage.contentStyle, textAlign: TextAlign.right))
-          ],
-        ),
-        DataRow(
-          cells: [
-            DataCell(Text('4',
-                style: CoursePage.contentStyle, textAlign: TextAlign.right)),
-            DataCell(
-                Text('Last Product goes here', style: CoursePage.contentStyle)),
-            DataCell(Text(r'$ 19.99',
-                style: CoursePage.contentStyle, textAlign: TextAlign.right))
-          ],
-        ),
-      ],
-    );
-  }
-}
-
-class MyNestedAccordion extends StatelessWidget //__
-{
-  const MyNestedAccordion({super.key});
-
-  @override
-  Widget build(context) //__
-  {
-    return Accordion(
-      paddingListTop: 0,
-      paddingListBottom: 0,
-      maxOpenSections: 1,
-      headerBackgroundColorOpened: Colors.black54,
-      headerPadding: const EdgeInsets.symmetric(vertical: 7, horizontal: 15),
-      children: [
-        AccordionSection(
-          isOpen: true,
-          leftIcon: const Icon(Icons.insights_rounded, color: Colors.white),
-          headerBackgroundColor: Colors.black38,
-          headerBackgroundColorOpened: Colors.black54,
-          header:
-              const Text('Nested Section #1', style: CoursePage.headerStyle),
-          content:
-              const Text(CoursePage.loremIpsum, style: CoursePage.contentStyle),
-          contentHorizontalPadding: 20,
-          contentBorderColor: Colors.black54,
-        ),
-        AccordionSection(
-          isOpen: true,
-          leftIcon: const Icon(Icons.compare_rounded, color: Colors.white),
-          header:
-              const Text('Nested Section #2', style: CoursePage.headerStyle),
-          headerBackgroundColor: Colors.black38,
-          headerBackgroundColorOpened: Colors.black54,
-          contentBorderColor: Colors.black54,
-          content: const Row(
+          backgroundColor: AppColors.white,
+          title: Row(
             children: [
-              Icon(Icons.compare_rounded,
-                  size: 120, color: Colors.orangeAccent),
-              Flexible(
-                  flex: 1,
-                  child: Text(CoursePage.loremIpsum,
-                      style: CoursePage.contentStyle)),
+              Image.asset("assets/image/logo.png"),
+              const SizedBox(
+                width: 12,
+              ),
+              const Text(
+                "Skool community",
+                style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
+              ),
             ],
           ),
         ),
-      ],
-    );
-  }
+        body: SingleChildScrollView(
+          child: Container(
+            padding: const EdgeInsets.all(20),
+            child: Column(
+              children: [
+                Container(
+                  padding: const EdgeInsets.all(20),
+                  decoration: BoxDecoration(
+                    color: AppColors.c_d9,
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          const Text(
+                            "Skool 101",
+                            style: TextStyle(
+                                fontSize: 20, fontWeight: FontWeight.w600),
+                          ),
+                          Transform.translate(
+                            offset: const Offset(5, 0),
+                            child: WButton(
+                              color: AppColors.transparent,
+                              textColor: AppColors.c_2a,
+                              borderRadius: 8,
+                              fontSize: 14,
+                              verticalPadding: 0,
+                              horizontalPadding: 0,
+                              text: "",
+                              onTap: () => {
+                                showModalBottomSheet<void>(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return Container(
+                                      width: MediaQuery.of(context).size.width,
+                                      decoration: const BoxDecoration(
+                                          color: Color(0xFFFFFFFF),
+                                          borderRadius: BorderRadius.vertical(
+                                              top: Radius.circular(16))),
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(20),
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.min,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.end,
+                                          children: <Widget>[
+                                            WButton(
+                                              borderRadius: 4,
+                                              verticalPadding: 4,
+                                              horizontalPadding: 4,
+                                              text: "",
+                                              onTap: () =>
+                                                  Navigator.pop(context),
+                                              child: SvgPicture.asset(
+                                                  "assets/svg/icon/close.svg"),
+                                            ),
+                                            for (String name in courseDropdown)
+                                              SizedBox(
+                                                width: double.infinity,
+                                                child: WButton(
+                                                  borderRadius: 4,
+                                                  verticalPadding: 16,
+                                                  horizontalPadding: 0,
+                                                  buttonPositionType:
+                                                      MainAxisAlignment.start,
+                                                  text: name,
+                                                  onTap: () =>
+                                                      Navigator.pop(context),
+                                                ),
+                                              ),
+                                          ],
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                ),
+                              },
+                              child: SizedBox(
+                                height: 28,
+                                child: SvgPicture.asset(
+                                    "assets/svg/icon/threedot.svg"),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 40),
+                      const LinearProgressIndicator(
+                        value: 0.45,
+                        backgroundColor: Color(0xFFE0E0E0),
+                        minHeight: 3,
+                        borderRadius: BorderRadius.all(Radius.circular(1.5)),
+                        valueColor:
+                            AlwaysStoppedAnimation<Color>(Color(0xFF2A85FF)),
+                      ),
+                      const SizedBox(height: 4.0),
+                      const Text(
+                        "45% complete",
+                        style:
+                            TextStyle(fontSize: 14, color: Color(0xFF070707)),
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 20),
+                Container(
+                  decoration:
+                      BoxDecoration(borderRadius: BorderRadius.circular(16)),
+                  clipBehavior: Clip.hardEdge,
+                  child: Column(
+                    children: courseModules.map((module) {
+                      return ExpansionPanelList(
+                        elevation: 0,
+                        dividerColor: AppColors.c_07,
+                        expandedHeaderPadding: EdgeInsets.zero,
+                        materialGapSize: 0,
+                        expansionCallback: (panelIndex, isExpanded) {
+                          setState(() {
+                            courseModules.forEach((module) {
+                              module[0]['isExpanded'] = false;
+                            });
+                            module[panelIndex]['isExpanded'] = isExpanded;
+                          });
+                        },
+                        children: module
+                            .map(
+                              (e) => ExpansionPanel(
+                                backgroundColor:
+                                    e['isExpanded'] ? AppColors.c_f0 : null,
+                                canTapOnHeader: true,
+                                headerBuilder:
+                                    (BuildContext _, bool isExpanded) {
+                                  return Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Row(
+                                        children: [
+                                          Container(
+                                            color: AppColors.c_2a,
+                                            width: 4,
+                                            height: 40,
+                                          ),
+                                          const SizedBox(width: 16),
+                                          Text(
+                                            "${e['moduleName']}",
+                                            style: const TextStyle(
+                                              color: AppColors.c_07,
+                                              fontSize: 14,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      e['isExpanded']
+                                          ? Transform.rotate(
+                                              angle: 90 *
+                                                  (pi /
+                                                      180), // Convert degrees to radians
+                                              child: WButton(
+                                                borderRadius: 4,
+                                                verticalPadding: 0,
+                                                horizontalPadding: 0,
+                                                color: AppColors.transparent,
+                                                buttonPositionType:
+                                                    MainAxisAlignment.start,
+                                                text: "",
+                                                onTap: () => {
+                                                  e['isExpanded'] = true,
+                                                  showModalBottomSheet<void>(
+                                                    context: context,
+                                                    builder:
+                                                        (BuildContext context) {
+                                                      return Container(
+                                                        width: MediaQuery.of(
+                                                                context)
+                                                            .size
+                                                            .width,
+                                                        decoration: const BoxDecoration(
+                                                            color: Color(
+                                                                0xFFFFFFFF),
+                                                            borderRadius:
+                                                                BorderRadius.vertical(
+                                                                    top: Radius
+                                                                        .circular(
+                                                                            16))),
+                                                        child: Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .all(20),
+                                                          child: Column(
+                                                            mainAxisSize:
+                                                                MainAxisSize
+                                                                    .min,
+                                                            crossAxisAlignment:
+                                                                CrossAxisAlignment
+                                                                    .end,
+                                                            children: <Widget>[
+                                                              WButton(
+                                                                borderRadius: 4,
+                                                                verticalPadding:
+                                                                    4,
+                                                                horizontalPadding:
+                                                                    4,
+                                                                text: "",
+                                                                onTap: () =>
+                                                                    Navigator.pop(
+                                                                        context),
+                                                                child: SvgPicture
+                                                                    .asset(
+                                                                        "assets/svg/icon/close.svg"),
+                                                              ),
+                                                              for (String name
+                                                                  in setDropdown)
+                                                                SizedBox(
+                                                                  width: double
+                                                                      .infinity,
+                                                                  child:
+                                                                      WButton(
+                                                                    borderRadius:
+                                                                        4,
+                                                                    verticalPadding:
+                                                                        16,
+                                                                    horizontalPadding:
+                                                                        0,
+                                                                    buttonPositionType:
+                                                                        MainAxisAlignment
+                                                                            .start,
+                                                                    text: name,
+                                                                    onTap: () =>
+                                                                        Navigator.pop(
+                                                                            context),
+                                                                  ),
+                                                                ),
+                                                            ],
+                                                          ),
+                                                        ),
+                                                      );
+                                                    },
+                                                  ),
+                                                },
+                                                child: SizedBox(
+                                                  height: 28,
+                                                  child: SvgPicture.asset(
+                                                      "assets/svg/icon/threedot.svg"),
+                                                ),
+                                              ),
+                                            )
+                                          : const Text(""),
+                                    ],
+                                  );
+                                },
+                                isExpanded: e['isExpanded'],
+                                body: Column(
+                                  children: [
+                                    for (String _ in e["lessons"])
+                                      SizedBox(
+                                        width: double.infinity,
+                                        child: WButton(
+                                          borderRadius: 0,
+                                          verticalPadding: 0,
+                                          horizontalPadding: 0,
+                                          buttonPositionType:
+                                              MainAxisAlignment.start,
+                                          text: "",
+                                          onTap: () => Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) => Module(),
+                                            ),
+                                          ),
+                                          child: Expanded(
+                                            child: Padding(
+                                              padding: const EdgeInsets.only(
+                                                  top: 8.5,
+                                                  bottom: 8.5,
+                                                  left: 36,
+                                                  right: 20),
+                                              child: Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: [
+                                                  const Text(
+                                                    "Lesson 1",
+                                                    maxLines: 1,
+                                                    overflow:
+                                                        TextOverflow.ellipsis,
+                                                    style: TextStyle(
+                                                        color: AppColors.c_07,
+                                                        fontSize: 12),
+                                                  ),
+                                                  SvgPicture.asset(
+                                                      "assets/svg/classroom/checked.svg"),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                  ],
+                                ),
+                              ),
+                            )
+                            .toList(),
+                      );
+                    }).toList(),
+                  ),
+                )
+              ],
+            ),
+          ),
+        ),
+      );
 }

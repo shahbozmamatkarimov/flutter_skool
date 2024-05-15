@@ -20,7 +20,7 @@ class Comments extends StatelessWidget {
         preferredSize:
             const Size.fromHeight(60.0), // Set your preferred height here
         child: AppBar(
-          backgroundColor: const Color(0xFFFFFFFF),
+          backgroundColor: AppColors.white,
           title: Row(
             children: [
               Image.asset("assets/image/logo.png"),

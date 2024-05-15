@@ -4,6 +4,7 @@ import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:skool/core/widgets/w_button.dart';
 import 'package:skool/features/community/presentation/pages/main.dart';
+import 'package:skool/features/search/presentation/pages/search.dart';
 
 void main() {
   runApp(const MyApp());
@@ -43,10 +44,11 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
-  final List<List<String>> bottomNav = [
+  final List<List<dynamic>> bottomNav = [
     [
       "assets/svg/bnavigation/home.svg",
-      "assets/svg/bnavigation/home_active.svg"
+      "assets/svg/bnavigation/home_active.svg",
+      Search()
     ],
     [
       "assets/svg/bnavigation/search.svg",
@@ -167,8 +169,8 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             child: BottomNavigationBar(
               selectedLabelStyle: TextStyle(fontSize: 0, height: 0),
-              items: [
-                for (List<String> item in bottomNav)
+              items: <BottomNavigationBarItem>[
+                for (List<dynamic> item in bottomNav)
                   BottomNavigationBarItem(
                     icon: SvgPicture.asset(
                       item[0],

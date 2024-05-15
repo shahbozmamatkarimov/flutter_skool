@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:skool/core/resources/app_colors.dart';
 import 'package:skool/core/widgets/w_button.dart';
+import 'package:skool/features/community/presentation/pages/add_course.dart';
 import 'package:skool/features/community/presentation/pages/course.dart';
 
 class Classroom extends StatelessWidget {
@@ -126,7 +127,14 @@ class Classroom extends StatelessWidget {
         horizontalPadding: 24,
         verticalPadding: 10,
         fontSize: 14,
-        onTap: () => {},
+        onTap: () => {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => AddCourse(),
+            ),
+          ),
+        },
         text: "",
         child: Row(
           mainAxisSize: MainAxisSize.min,

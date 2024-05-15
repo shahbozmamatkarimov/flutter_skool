@@ -100,6 +100,7 @@ class _WButtonState extends State<WButton> {
                                     )
                                   : Styles.getButtonStyle().copyWith(
                                       fontSize: 15,
+                                      color: widget.textColor,
                                       fontWeight: widget.fontWeight,
                                     )),
                         ),
