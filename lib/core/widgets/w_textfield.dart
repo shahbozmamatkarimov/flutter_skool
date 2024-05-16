@@ -30,6 +30,7 @@ class WTextField extends StatefulWidget {
   final String? label;
   final bool autoFocus;
   final Color? borderColor;
+  final Color? fillColor;
 
   const WTextField({
     Key? key,
@@ -55,6 +56,7 @@ class WTextField extends StatefulWidget {
     this.label,
     this.autoFocus = false,
     this.borderColor,
+    this.fillColor = AppColors.inputColor,
   }) : super(key: key);
 
   @override
@@ -136,7 +138,7 @@ class _WTextFieldState extends State<WTextField> {
                     )
                   : widget.suffixIcon,
               filled: true,
-              fillColor: AppColors.inputColor,
+              fillColor: widget.fillColor,
               border: getBorder(color: widget.borderColor),
               enabledBorder: getBorder(color: widget.borderColor),
               focusedBorder: getBorder(color: widget.borderColor),
@@ -153,7 +155,7 @@ class _WTextFieldState extends State<WTextField> {
                   Styles.getTextStyle(fontSize: 8, color: AppColors.danger),
             ),
             textInputAction: widget.textInputAction,
-            cursorColor: AppColors.c_f2,
+            cursorColor: AppColors.black,
             keyboardType: widget.keyboardType,
             inputFormatters: widget.formatters,
           ),

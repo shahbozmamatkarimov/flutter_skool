@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:skool/core/resources/app_colors.dart';
 import 'package:skool/core/widgets/w_button.dart';
+import 'package:skool/core/widgets/w_user_avatar.dart';
 
 class Members extends StatelessWidget {
   Members({super.key});
@@ -138,15 +139,10 @@ class Members extends StatelessWidget {
                               children: [
                                 const Row(
                                   children: [
-                                    SizedBox(
-                                      height: 40,
-                                      child: CircleAvatar(
-                                        radius:
-                                            20, // Set the radius of the circle
-                                        backgroundImage: NetworkImage(
+                                    WUserAvatar(
+                                      userStep: 1,
+                                      userAvatar:
                                           'https://picsum.photos/250?image=9',
-                                        ),
-                                      ),
                                     ),
                                     SizedBox(
                                       width: 16,
@@ -202,7 +198,6 @@ class Members extends StatelessWidget {
                                   onTap: () => {
                                     showDialog(
                                       context: context,
-                                      
                                       builder: (BuildContext context) {
                                         return AlertDialog(
                                           shape: RoundedRectangleBorder(

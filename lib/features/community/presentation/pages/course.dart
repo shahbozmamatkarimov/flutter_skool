@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:skool/core/resources/app_colors.dart';
 import 'package:skool/core/widgets/w_button.dart';
+import 'package:skool/features/community/presentation/pages/add_course.dart';
+import 'package:skool/features/community/presentation/pages/add_module.dart';
 import 'package:skool/features/community/presentation/pages/module.dart';
 
 // class CoursePage extends StatefulWidget {
@@ -20,11 +22,11 @@ class CoursePage extends StatefulWidget {
 
 /// Main example page
 class _CoursePageState extends State<CoursePage> {
-  final List<String> courseDropdown = [
-    "Edit course",
-    "Add set",
-    "Add modul",
-    "Delete course",
+  final List<List<dynamic>> courseDropdown = [
+    ["Edit course", const AddCourse()],
+    ["Add set", const AddCourse()],
+    ["Add modul", const AddModule()],
+    // ["Delete course", null],
   ];
 
   final List<String> setDropdown = [
@@ -197,20 +199,210 @@ class _CoursePageState extends State<CoursePage> {
                                               child: SvgPicture.asset(
                                                   "assets/svg/icon/close.svg"),
                                             ),
-                                            for (String name in courseDropdown)
+                                            for (dynamic name in courseDropdown)
                                               SizedBox(
                                                 width: double.infinity,
                                                 child: WButton(
-                                                  borderRadius: 4,
-                                                  verticalPadding: 16,
-                                                  horizontalPadding: 0,
-                                                  buttonPositionType:
-                                                      MainAxisAlignment.start,
-                                                  text: name,
-                                                  onTap: () =>
-                                                      Navigator.pop(context),
-                                                ),
+                                                    borderRadius: 4,
+                                                    verticalPadding: 16,
+                                                    horizontalPadding: 0,
+                                                    fontSize: 12,
+                                                    textColor: AppColors.c_07,
+                                                    buttonPositionType:
+                                                        MainAxisAlignment.start,
+                                                    text: "${name[0]}",
+                                                    onTap: () => {
+                                                          Navigator.pop(
+                                                              context),
+                                                          Navigator.push(
+                                                            context,
+                                                            MaterialPageRoute(
+                                                              builder:
+                                                                  (context) =>
+                                                                      name[1],
+                                                            ),
+                                                          ),
+                                                        }),
                                               ),
+                                            SizedBox(
+                                              width: double.infinity,
+                                              child: WButton(
+                                                borderRadius: 4,
+                                                verticalPadding: 16,
+                                                horizontalPadding: 0,
+                                                fontSize: 12,
+                                                textColor: AppColors.c_07,
+                                                buttonPositionType:
+                                                    MainAxisAlignment.start,
+                                                onTap: () => {
+                                                  Navigator.pop(context),
+                                                  showDialog(
+                                                    context: context,
+                                                    builder:
+                                                        (BuildContext context) {
+                                                      return AlertDialog(
+                                                        shape:
+                                                            RoundedRectangleBorder(
+                                                          borderRadius:
+                                                              BorderRadius.circular(
+                                                                  12.0), // Set your desired border radius here
+                                                        ),
+                                                        backgroundColor:
+                                                            AppColors.white,
+                                                        surfaceTintColor:
+                                                            AppColors.white,
+                                                        title: const Text(
+                                                          'Delete course',
+                                                          style: TextStyle(
+                                                            fontSize: 20,
+                                                            fontWeight:
+                                                                FontWeight.w600,
+                                                            color:
+                                                                AppColors.c_07,
+                                                          ),
+                                                        ),
+                                                        content: const Text(
+                                                            'Are you sure you want to delete your course?',
+                                                            style: TextStyle(
+                                                              color: AppColors
+                                                                  .c_07,
+                                                            )),
+                                                        actions: <Widget>[
+                                                          WButton(
+                                                            borderRadius: 8,
+                                                            verticalPadding: 0,
+                                                            horizontalPadding:
+                                                                0,
+                                                            textColor:
+                                                                AppColors.c_a1,
+                                                            fontSize: 14,
+                                                            fontWeight:
+                                                                FontWeight.w600,
+                                                            buttonPositionType:
+                                                                MainAxisAlignment
+                                                                    .center, // Changed to center
+                                                            text: "cancel"
+                                                                .toUpperCase(),
+                                                            onTap: () =>
+                                                                Navigator.pop(
+                                                                    context),
+                                                          ),
+                                                          const SizedBox(
+                                                              width: 20),
+                                                          WButton(
+                                                            borderRadius: 8,
+                                                            color:
+                                                                AppColors.c_bc,
+                                                            verticalPadding: 12,
+                                                            horizontalPadding:
+                                                                24,
+                                                            textColor:
+                                                                AppColors.c_07,
+                                                            fontSize: 14,
+                                                            fontWeight:
+                                                                FontWeight.w600,
+                                                            buttonPositionType:
+                                                                MainAxisAlignment
+                                                                    .center, // Changed to center
+                                                            text: "Confirm"
+                                                                .toUpperCase(),
+                                                            onTap: () => {},
+                                                          ),
+                                                        ],
+                                                      );
+                                                    },
+                                                  ),
+                                                  // showModalBottomSheet<void>(
+                                                  //   context: context,
+                                                  //   builder:
+                                                  //       (BuildContext context) {
+                                                  //     return Container(
+                                                  //       height: 224,
+                                                  //       width: MediaQuery.of(
+                                                  //               context)
+                                                  //           .size
+                                                  //           .width,
+                                                  //       decoration: const BoxDecoration(
+                                                  //           color: Color(
+                                                  //               0xFFFFFFFF),
+                                                  //           borderRadius:
+                                                  //               BorderRadius.vertical(
+                                                  //                   top: Radius
+                                                  //                       .circular(
+                                                  //                           16))),
+                                                  //       child: Padding(
+                                                  //         padding:
+                                                  //             const EdgeInsets
+                                                  //                 .symmetric(
+                                                  //           horizontal: 20,
+                                                  //           vertical: 28,
+                                                  //         ),
+                                                  //         child: Column(
+                                                  //           crossAxisAlignment:
+                                                  //               CrossAxisAlignment
+                                                  //                   .start,
+                                                  //           children: [
+                                                  //             const Text(
+                                                  //               'Delete course',
+                                                  //               style:
+                                                  //                   TextStyle(
+                                                  //                 fontSize: 20,
+                                                  //                 fontWeight:
+                                                  //                     FontWeight
+                                                  //                         .w600,
+                                                  //                 color:
+                                                  //                     AppColors
+                                                  //                         .c_07,
+                                                  //               ),
+                                                  //             ),
+                                                  //             const SizedBox(
+                                                  //                 height: 28),
+                                                  //             const Text(
+                                                  //                 'Are you sure you want to remove your vote?',
+                                                  //                 style:
+                                                  //                     TextStyle(
+                                                  //                   color:
+                                                  //                       AppColors
+                                                  //                           .c_07,
+                                                  //                 )),
+                                                  //             const SizedBox(
+                                                  //                 height: 28),
+                                                  //             Row(
+                                                  //               children: [
+                                                  //                 WButton(
+                                                  //                   color:
+                                                  //                       AppColors
+                                                  //                           .c_bc,
+                                                  //                   textColor:
+                                                  //                       AppColors
+                                                  //                           .c_07,
+                                                  //                   fontSize:
+                                                  //                       14,
+                                                  //                   fontWeight:
+                                                  //                       FontWeight
+                                                  //                           .w600,
+                                                  //                   horizontalPadding:
+                                                  //                       24,
+                                                  //                   verticalPadding:
+                                                  //                       11,
+                                                  //                   text: "Confirm"
+                                                  //                       .toUpperCase(),
+                                                  //                   onTap: () =>
+                                                  //                       Navigator.of(context)
+                                                  //                           .pop(),
+                                                  //                 ),
+                                                  //               ],
+                                                  //             ),
+                                                  //           ],
+                                                  //         ),
+                                                  //       ),
+                                                  //     );
+                                                  //   },
+                                                  // ),
+                                                },
+                                                text: "Delete course",
+                                              ),
+                                            ),
                                           ],
                                         ),
                                       ),
@@ -365,6 +557,11 @@ class _CoursePageState extends State<CoursePage> {
                                                                         16,
                                                                     horizontalPadding:
                                                                         0,
+                                                                    fontSize:
+                                                                        12,
+                                                                    textColor:
+                                                                        AppColors
+                                                                            .c_07,
                                                                     buttonPositionType:
                                                                         MainAxisAlignment
                                                                             .start,

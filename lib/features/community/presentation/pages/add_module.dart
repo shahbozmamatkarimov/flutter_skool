@@ -6,11 +6,21 @@ import 'package:skool/core/resources/app_colors.dart';
 import 'package:skool/core/widgets/w_button.dart';
 import 'package:skool/core/widgets/w_textfield.dart';
 
-class AddModule extends StatelessWidget {
-  AddModule({super.key});
+class AddModule extends StatefulWidget {
+  const AddModule({super.key});
 
+  @override
+  State<AddModule> createState() => _AddModuleState();
+}
+
+class _AddModuleState extends State<AddModule> {
   final List<String> postIcons = ["link", "gif"];
-
+  final List<String> addDropdown = <String>[
+    "Add resource link",
+    "Add resource file",
+    "Add transcript",
+  ];
+  bool switchButton = false;
   final TextEditingController textController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
 
@@ -93,6 +103,108 @@ class AddModule extends StatelessWidget {
                 hint: "Write something...",
                 hintFontSize: 12,
                 maxLines: 6,
+              ),
+              const SizedBox(height: 12),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  WButton(
+                    color: AppColors.c_e0,
+                    buttonType: ButtonType.outline,
+                    borderRadius: 4,
+                    fontSize: 14,
+                    verticalPadding: 12,
+                    horizontalPadding: 12,
+                    text: "",
+                    onTap: () => {
+                      showModalBottomSheet<void>(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return Container(
+                            width: MediaQuery.of(context).size.width,
+                            decoration: const BoxDecoration(
+                                color: Color(0xFFFFFFFF),
+                                borderRadius: BorderRadius.vertical(
+                                    top: Radius.circular(16))),
+                            child: Padding(
+                              padding: const EdgeInsets.all(20),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                children: <Widget>[
+                                  WButton(
+                                    borderRadius: 4,
+                                    verticalPadding: 4,
+                                    horizontalPadding: 4,
+                                    text: "",
+                                    onTap: () => Navigator.pop(context),
+                                    child: SvgPicture.asset(
+                                        "assets/svg/icon/close.svg"),
+                                  ),
+                                  for (String name in addDropdown)
+                                    SizedBox(
+                                      width: double.infinity,
+                                      child: WButton(
+                                        borderRadius: 4,
+                                        verticalPadding: 16,
+                                        horizontalPadding: 0,
+                                        buttonPositionType:
+                                            MainAxisAlignment.start,
+                                        text: name,
+                                        onTap: () => Navigator.pop(context),
+                                      ),
+                                    ),
+                                ],
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+                    },
+                    child: Row(
+                      children: [
+                        const Text(
+                          "Add",
+                          style: TextStyle(fontSize: 14, color: AppColors.c_07),
+                        ),
+                        const SizedBox(width: 14),
+                        SvgPicture.asset("assets/svg/icon/arrow.svg")
+                      ],
+                    ),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        switchButton ? "Published" : "Draft",
+                        style: const TextStyle(
+                            color: AppColors.c_07,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500),
+                      ),
+                      const SizedBox(width: 24),
+                      Switch(
+                        // This bool value toggles the switch.
+                        value: switchButton,
+                        inactiveThumbImage:
+                            const AssetImage("assets/image/switch.png"),
+                        activeColor: AppColors.white,
+                        activeTrackColor: AppColors.c_2a,
+                        inactiveThumbColor: AppColors.white,
+                        inactiveTrackColor: AppColors.c_e0,
+                        focusColor: AppColors.transparent,
+                        trackOutlineColor: const MaterialStatePropertyAll(
+                            AppColors.transparent),
+                        onChanged: (bool value) {
+                          // This is called when the user toggles the switch.
+                          setState(() {
+                            switchButton = value;
+                          });
+                        },
+                      ),
+                    ],
+                  ),
+                ],
               ),
               const SizedBox(height: 70),
               Row(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:skool/core/resources/app_colors.dart';
+import 'package:skool/core/widgets/w_user_avatar.dart';
 
 class Votes extends StatelessWidget {
   Votes({super.key});
@@ -41,49 +42,18 @@ class Votes extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: List.generate(
               9,
-              (index) => Padding(
-                padding: const EdgeInsets.only(bottom: 20),
+              (index) => const Padding(
+                padding: EdgeInsets.only(bottom: 20),
                 child: Row(
                   children: [
-                    Stack(
-                      clipBehavior: Clip.none,
-                      children: <Widget>[
-                        const CircleAvatar(
-                          radius: 20, // Set the radius of the circle
-                          backgroundImage: NetworkImage(
-                            'https://picsum.photos/250?image=9',
-                          ),
-                        ),
-                        Positioned(
-                          bottom: -2,
-                          right: -12,
-                          child: Stack(
-                            clipBehavior: Clip.none,
-                            children: <Widget>[
-                              SvgPicture.asset("assets/svg/icon/user_step.svg"),
-                              const Positioned(
-                                left: 0,
-                                right: 0,
-                                top: 0,
-                                child: Center(
-                                    child: Text(
-                                  "1",
-                                  style: TextStyle(
-                                    fontSize: 10,
-                                    fontWeight: FontWeight.w500,
-                                    color: AppColors.white,
-                                  ),
-                                )),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
+                    WUserAvatar(
+                      userStep: 1,
+                      userAvatar: 'https://picsum.photos/250?image=9',
                     ),
-                    const SizedBox(
+                    SizedBox(
                       width: 16,
                     ),
-                    const Column(
+                    Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(

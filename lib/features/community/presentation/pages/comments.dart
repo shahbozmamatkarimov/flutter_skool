@@ -5,6 +5,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:skool/core/resources/app_colors.dart';
 import 'package:skool/core/widgets/w_button.dart';
 import 'package:skool/core/widgets/w_textfield.dart';
+import 'package:skool/core/widgets/w_user_avatar.dart';
 
 class Comments extends StatelessWidget {
   Comments({super.key});
@@ -110,11 +111,11 @@ class Comments extends StatelessWidget {
                 children: [
                   const Row(
                     children: [
-                      CircleAvatar(
-                        radius: 20, // Set the radius of the circle
-                        backgroundImage: NetworkImage(
-                          'https://picsum.photos/250?image=9',
-                        ),
+                      WUserAvatar(
+                        userStep: 1,
+                        right: 0,
+                        userStepImage: "user_step2",
+                        userAvatar: 'https://picsum.photos/250?image=9',
                       ),
                       SizedBox(
                         width: 16,
@@ -281,13 +282,14 @@ class Comments extends StatelessWidget {
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            CircleAvatar(
-                              radius: i % 2 == 0
-                                  ? 12
-                                  : 20, // Set the radius of the circle
-                              backgroundImage: const NetworkImage(
-                                'https://picsum.photos/250?image=9',
-                              ),
+                            WUserAvatar(
+                              radius: i % 2 == 0 ? 12 : 20,
+                              height: i % 2 == 0 ? 12 : null,
+                              width: i % 2 == 0 ? 15 : null,
+                              fontSize: i % 2 == 0 ? 8 : null,
+                              right: i % 2 == 0 ? -6 : -12,
+                              userStep: 1,
+                              userAvatar: 'https://picsum.photos/250?image=9',
                             ),
                             const SizedBox(
                               width: 16,

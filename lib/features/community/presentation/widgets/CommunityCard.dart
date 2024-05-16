@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:skool/core/resources/app_colors.dart';
 import 'package:skool/core/widgets/w_button.dart';
+import 'package:skool/core/widgets/w_user_avatar.dart';
 import 'package:skool/features/community/data/data_sources/community_service.dart';
 import 'package:skool/features/community/data/repositories/impl_community_repo.dart';
 import 'package:skool/features/community/presentation/bloc/community/community_bloc.dart';
@@ -117,16 +118,12 @@ class CommunityCard extends StatelessWidget {
                             children: [
                               const Row(
                                 children: [
-                                  SizedBox(
-                                    height:
-                                        40, // Set the height of the container
-                                    child: CircleAvatar(
-                                      radius:
-                                          20, // Set the radius of the circle
-                                      backgroundImage: NetworkImage(
+                                  WUserAvatar(
+                                    userStep: 1,
+                                    right: 0,
+                                    userStepImage: "user_step2",
+                                    userAvatar:
                                         'https://picsum.photos/250?image=9',
-                                      ),
-                                    ),
                                   ),
                                   SizedBox(
                                     width: 16,
