@@ -39,7 +39,7 @@ class _CalendarState extends State<Calendar> {
   CalendarController _calendarController = CalendarController();
 
   void viewChanged(ViewChangedDetails viewChangedDetails) {
-    SchedulerBinding.instance!.addPostFrameCallback((Duration duration) {
+    SchedulerBinding.instance.addPostFrameCallback((Duration duration) {
       setState(() {
         _month = DateFormat('MMM')
             .format(viewChangedDetails

@@ -399,12 +399,12 @@ class _AddEventState extends State<AddEvent> {
                     )
                   : const Text(""),
               const SizedBox(height: 20),
-              Row(
+              const Row(
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   WCheckbox(),
-                  const SizedBox(width: 12),
-                  const WText(
+                  SizedBox(width: 12),
+                  WText(
                     text: "Remind members by email 1 day before",
                     fontSize: 14,
                     color: AppColors.c_07,
