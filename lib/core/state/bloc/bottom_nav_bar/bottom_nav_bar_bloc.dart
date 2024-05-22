@@ -1,6 +1,5 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:skool/config/routes/route_path.dart';
-import 'package:skool/config/routes/router.gr.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 
@@ -23,16 +22,16 @@ class BottomNavBarBloc extends Bloc<BottomNavBarEvent, BottomNavBarState> {
   }
   //
   final List<TabRouteData> routesData = [
-    const TabRouteData(path: RoutePath.dashboard, routeInfo: RootDashboard()),
-    const TabRouteData(path: RoutePath.activity, routeInfo: RootActivity()),
-    const TabRouteData(path: RoutePath.requests, routeInfo: RootRequests()),
-    const TabRouteData(path: RoutePath.cases, routeInfo: RootCases()),
-    const TabRouteData(path: RoutePath.team, routeInfo: RootTeam()),
-    const TabRouteData(path: RoutePath.clients, routeInfo: RootClients()),
-    const TabRouteData(path: RoutePath.tasks, routeInfo: RootTasks()),
-    const TabRouteData(path: RoutePath.agenda, routeInfo: RootAgenda()),
-    const TabRouteData(path: RoutePath.chat, routeInfo: RootChat()),
-    const TabRouteData(path: RoutePath.adminPanel, routeInfo: RootAdminPanel()),
+    // const TabRouteData(path: RoutePath.dashboard, routeInfo: RootDashboard()),
+    // const TabRouteData(path: RoutePath.activity, routeInfo: RootActivity()),
+    // const TabRouteData(path: RoutePath.requests, routeInfo: RootRequests()),
+    // const TabRouteData(path: RoutePath.cases, routeInfo: RootCases()),
+    // const TabRouteData(path: RoutePath.team, routeInfo: RootTeam()),
+    // const TabRouteData(path: RoutePath.clients, routeInfo: RootClients()),
+    // const TabRouteData(path: RoutePath.tasks, routeInfo: RootTasks()),
+    // const TabRouteData(path: RoutePath.agenda, routeInfo: RootAgenda()),
+    // const TabRouteData(path: RoutePath.chat, routeInfo: RootChat()),
+    // const TabRouteData(path: RoutePath.adminPanel, routeInfo: RootAdminPanel()),
   ];
 
   getRoutes() {

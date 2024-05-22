@@ -41,7 +41,7 @@ class WAppBar extends StatelessWidget implements PreferredSizeWidget {
               children: [
                 GestureDetector(
                   onTap: () {
-                    context.router.pushNamed(RoutePath.notification);
+                    // context.router.pushNamed(RoutePath.notification);
                   },
                   child: const WCircularIcon(
                     color: AppColors.primaryColor,

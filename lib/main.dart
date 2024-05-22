@@ -1,12 +1,14 @@
+import 'package:auto_route/auto_route.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:skool/config/routes/route_data.dart';
 import 'package:skool/config/routes/route_path.dart';
+import 'package:skool/config/routes/router.dart';
 import 'package:skool/config/routes/router.gr.dart';
 import 'package:skool/core/widgets/w_button.dart';
 import 'package:skool/core/widgets/w_textfield.dart';
-import 'package:skool/features/community/presentation/pages/main.dart';
 import 'package:skool/features/search/presentation/pages/search.dart';
 
 void main() {
@@ -41,11 +43,13 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 0;
 
+  final _router = AppRouter();
+
   final List<List<dynamic>> bottomNav = [
     [
       "assets/svg/bnavigation/home.svg",
       "assets/svg/bnavigation/home_active.svg",
-          const TabRouteData(path: RoutePath.search, routeInfo: RootSearch()),
+      const TabRouteData(path: RoutePath.search, routeInfo: RootSearch()),
     ],
     [
       "assets/svg/bnavigation/search.svg",
@@ -67,17 +71,30 @@ class _MyHomePageState extends State<MyHomePage> {
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => bottomNav[index][2],
-        ),
-      );
+      bottomNav[index][2];
+      // RouteService().navigateTo();
+      // RouteService.of(context).push();
+      // Navigator.push(
+      //   context,
+      //   MaterialPageRoute(
+      //     builder: (context) => bottomNav[index][2],
+      //   ),
+      // );
     });
   }
 
   @override
   Widget build(BuildContext context) {
+    // return MaterialApp.router(
+    //   // supportedLocales: context.supportedLocales,
+    //   localizationsDelegates: context.localizationDelegates,
+    //   title: 'DLA App',
+    //   theme: ThemeData(
+    //     useMaterial3: true,
+    //   ),
+    //   debugShowCheckedModeBanner: false,
+    //   routerConfig: _router.config(),
+    // );
     return DefaultTabController(
       length: 4,
       child: Scaffold(
@@ -104,7 +121,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ),
         ),
-        body: const CommunityMainPage(),
+        body: const AutoRouter(),
         bottomNavigationBar: Container(
           height: 56,
           decoration: const BoxDecoration(
