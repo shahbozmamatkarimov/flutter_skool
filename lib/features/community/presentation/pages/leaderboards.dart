@@ -1,12 +1,9 @@
-import 'dart:math';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:skool/core/resources/app_colors.dart';
-import 'package:skool/core/widgets/w_button.dart';
-import 'package:skool/core/widgets/w_textfield.dart';
+import 'package:skool/core/widgets/w_text.dart';
 import 'package:skool/core/widgets/w_user_avatar.dart';
+import 'package:skool/core/widgets/w_user_indicator.dart';
 
 class LeaderBoards extends StatelessWidget {
   LeaderBoards({super.key});
@@ -17,157 +14,297 @@ class LeaderBoards extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: PreferredSize(
-        preferredSize:
-            const Size.fromHeight(60.0), // Set your preferred height here
-        child: AppBar(
-          backgroundColor: AppColors.white,
-          title: Row(
-            children: [
-              Image.asset("assets/image/logo.png"),
-              const SizedBox(
-                width: 12,
-              ),
-              const Text(
-                "Skool community",
-                style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
-              ),
-            ],
-          ),
-          leading: IconButton(
-            icon: SvgPicture.asset(
-                "assets/svg/icon/back_route.svg"), // Your custom icon here
-            onPressed: () {
-              Navigator.pop(context);
-            },
-          ),
-        ),
-      ),
-      bottomNavigationBar: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-        height: 64,
-        child: Row(
+    return SingleChildScrollView(
+      child: Container(
+        margin: const EdgeInsets.only(top: 20),
+        padding: const EdgeInsets.all(20),
+        // decoration: BoxDecoration(
+        //     color: AppColors.white, borderRadius: BorderRadius.circular(16)),
+        child: Column(
           children: [
-            const CircleAvatar(
-              radius: 20, // Set the radius of the circle
-              backgroundImage: NetworkImage(
-                'https://picsum.photos/250?image=9',
-              ),
-            ),
-            const SizedBox(width: 16),
-            Expanded(
-              child: Container(
-                clipBehavior: Clip.hardEdge,
-                decoration: const BoxDecoration(
+            Container(
+              padding: const EdgeInsets.all(20),
+              decoration: BoxDecoration(
                   color: AppColors.white,
-                  borderRadius: BorderRadius.all(Radius.circular(8)),
-                ),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: SizedBox(
-                        height: 40,
-                        child: WTextField(
-                          controller: commentController,
-                          borderColor: AppColors.white,
-                          hint: "Your comment",
-                        ),
+                  borderRadius: BorderRadius.circular(12)),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Stack(
+                    clipBehavior: Clip.none,
+                    children: [
+                      Positioned(
+                        top: 0,
+                        left: 0,
+                        child: SvgPicture.asset("assets/svg/icon/settings.svg"),
                       ),
-                    ),
-                    Row(
-                      children: [
-                        for (String icon in postIcons)
-                          WButton(
-                            text: "",
-                            horizontalPadding: 12,
-                            verticalPadding: 12,
-                            onTap: () => {},
-                            child: SvgPicture.asset(
-                              "assets/svg/post/$icon.svg",
-                              width: 14,
-                              height: 14,
+                      Column(
+                        children: [
+                          const Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Stack(
+                                clipBehavior: Clip.none,
+                                children: [
+                                  Center(
+                                    child: WuserProgressIndicator(
+                                      value: 0.1,
+                                      strokeWidth: 10,
+                                      trackColor: AppColors.c_f0,
+                                      progressColor: AppColors.c_2a,
+                                      trackCornerRadius: 10,
+                                      circleSize: 160,
+                                    ),
+                                  ),
+                                  Positioned(
+                                    top: 10,
+                                    left: 10,
+                                    right: 0,
+                                    child: WUserAvatar(
+                                      userStep: 1,
+                                      radius: 70,
+                                      width: 43,
+                                      height: 38,
+                                      right: 0,
+                                      bottom: -12,
+                                      fontSize: 22,
+                                      userAvatar:
+                                          'https://picsum.photos/250?image=9',
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 20),
+                          const WText(
+                            text: "Xayot Sharapov",
+                            fontSize: 20,
+                            fontWeight: FontWeight.w600,
+                          ),
+                          const SizedBox(height: 20),
+                          Container(
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 8, horizontal: 10),
+                            decoration: BoxDecoration(
+                              color: AppColors.c_d9,
+                              borderRadius: BorderRadius.circular(26),
+                            ),
+                            child: const WText(
+                              text: "Level 1 - STARTER",
+                              fontSize: 12,
+                              fontWeight: FontWeight.w600,
+                              color: AppColors.c_2a,
                             ),
                           ),
-                      ],
-                    ),
-                  ],
-                ),
+                          const SizedBox(height: 12),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              const WText(
+                                text: "40",
+                                fontSize: 12,
+                                color: AppColors.c_2a,
+                              ),
+                              const SizedBox(width: 4),
+                              const WText(
+                                  text: "points to level up",
+                                  fontSize: 12,
+                                  color: AppColors.c_07),
+                              const SizedBox(width: 4),
+                              SvgPicture.asset(
+                                  "assets/svg/icon/question_info.svg")
+                            ],
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 32),
+                  Row(
+                    children: [
+                      Container(
+                        width: 42,
+                        height: 42,
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          color: AppColors.c_d9,
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: const WText(
+                          text: "1",
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                      const SizedBox(width: 20),
+                      const Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          WText(
+                            text: "Level 1 - STARTER",
+                            fontWeight: FontWeight.w600,
+                            color: AppColors.c_07,
+                          ),
+                          SizedBox(height: 4),
+                          WText(
+                            text: "100% of members",
+                            fontSize: 12,
+                            color: AppColors.c_07,
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                  Container(
+                    width: 42,
+                    alignment: Alignment.center,
+                    child: SvgPicture.asset("assets/svg/icon/three_line.svg"),
+                  ),
+                  Row(
+                    children: [
+                      Container(
+                        width: 42,
+                        height: 42,
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          color: AppColors.c_f2,
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: SvgPicture.asset("assets/svg/icon/lock.svg"),
+                      ),
+                      const SizedBox(width: 20),
+                      const Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          WText(
+                            text: "Level 2",
+                            fontWeight: FontWeight.w600,
+                            color: AppColors.c_07,
+                          ),
+                          SizedBox(height: 4),
+                          WText(
+                            text: "100% of members",
+                            fontSize: 12,
+                            color: AppColors.c_07,
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 28),
+            const WText(
+              text: "Leaderboards will be updated when there is more activity",
+              fontSize: 14,
+              color: AppColors.c_07,
+            ),
+            const SizedBox(height: 28),
+            Container(
+              padding: const EdgeInsets.only(top: 20, bottom: 24),
+              decoration: BoxDecoration(
+                color: AppColors.white,
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Column(
+                    children: [
+                      const WText(
+                        text: "Leaderboard (7-day)",
+                        fontWeight: FontWeight.w600,
+                      ),
+                      const SizedBox(height: 18),
+                      const Divider(
+                        color: AppColors.c_e0,
+                        height: 1,
+                      ),
+                      const SizedBox(height: 24),
+                      SvgPicture.asset("assets/svg/icon/no_activity.svg"),
+                      const SizedBox(height: 8),
+                      const WText(
+                        text: "No activity yet",
+                        fontSize: 12,
+                        color: AppColors.c_07,
+                      )
+                    ],
+                  )
+                ],
+              ),
+            ),
+            const SizedBox(height: 28),
+            Container(
+              padding: const EdgeInsets.only(top: 20, bottom: 24),
+              decoration: BoxDecoration(
+                color: AppColors.white,
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Column(
+                    children: [
+                      const WText(
+                        text: "Leaderboard (30-day)",
+                        fontWeight: FontWeight.w600,
+                      ),
+                      const SizedBox(height: 18),
+                      const Divider(
+                        color: AppColors.c_e0,
+                        height: 1,
+                      ),
+                      const SizedBox(height: 24),
+                      SvgPicture.asset("assets/svg/icon/no_activity.svg"),
+                      const SizedBox(height: 8),
+                      const WText(
+                        text: "No activity yet",
+                        fontSize: 12,
+                        color: AppColors.c_07,
+                      )
+                    ],
+                  )
+                ],
+              ),
+            ),
+            const SizedBox(height: 28),
+            Container(
+              padding: const EdgeInsets.only(top: 20, bottom: 24),
+              decoration: BoxDecoration(
+                color: AppColors.white,
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Column(
+                    children: [
+                      const WText(
+                        text: "Leaderboard (all-time)",
+                        fontWeight: FontWeight.w600,
+                      ),
+                      const SizedBox(height: 18),
+                      const Divider(
+                        color: AppColors.c_e0,
+                        height: 1,
+                      ),
+                      const SizedBox(height: 24),
+                      SvgPicture.asset("assets/svg/icon/no_activity.svg"),
+                      const SizedBox(height: 8),
+                      const WText(
+                        text: "No activity yet",
+                        fontSize: 12,
+                        color: AppColors.c_07,
+                      )
+                    ],
+                  )
+                ],
               ),
             ),
           ],
         ),
       ),
-      body: SingleChildScrollView(
-        child: Container(
-          margin: const EdgeInsets.only(top: 20),
-          padding: const EdgeInsets.all(20),
-          decoration: BoxDecoration(
-              color: AppColors.white, borderRadius: BorderRadius.circular(16)),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                children: [
-                  SvgPicture.asset("assets/svg/icon/settings.svg"),
-                  const SizedBox(
-                    height: 160,
-                    width: 160,
-                    child: CircularProgressIndicator(
-                      color: AppColors.c_2a,
-                      strokeWidth: 11,
-                      backgroundColor: AppColors.c_f0,
-                      value: 0.1,
-                    ),
-                  )
-                ],
-              )
-            ],
-          ),
-        ),
-      ),
     );
   }
 }
-
-// class MyCircularProgressIndicator extends CustomPainter {
-//   final double strokeWidth;
-//   final double radius;
-//   final Color backgroundColor;
-//   final Color foregroundColor;
-//   final double value;
-
-//   const MyCircularProgressIndicator({
-//     required this.strokeWidth,
-//     required this.radius,
-//     required this.backgroundColor,
-//     required this.foregroundColor,
-//     required this.value,
-//   });
-
-//   @override
-//   void paint(Canvas canvas, Size size) {
-//     final paint = Paint()
-//       ..color = backgroundColor
-//       ..strokeWidth = strokeWidth
-//       ..style = PaintingStyle.stroke;
-
-//     final circlePath = Path()
-//       ..addArc(Rect.fromCenter(center: Offset(size.width / 2, size.height / 2), radius: radius), 0, 2 * pi * value);
-
-//     canvas.drawCircle(Offset(size.width / 2, size.height / 2), radius, paint);
-//     canvas.drawPath(circlePath, Paint()..color = foregroundColor..style = PaintingStyle.stroke);
-//   }
-
-//   @override
-//   bool shouldRepaint(MyCircularProgressIndicator oldDelegate) => value != oldDelegate.value;
-// }
-
-// // Usage
-// MyCircularProgressIndicator(
-//   strokeWidth: 11,
-//   radius: 30, // Adjust radius as needed
-//   backgroundColor: AppColors.c_f0,
-//   foregroundColor: AppColors.c_2a,
-//   value: 0.1,
-// ),

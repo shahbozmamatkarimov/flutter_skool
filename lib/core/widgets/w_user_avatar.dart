@@ -1,11 +1,7 @@
-import 'package:skool/core/widgets/w_label.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../core/resources/app_colors.dart';
-import '../../../core/resources/styles.dart';
-import '../resources/app_icons.dart';
 
 class WUserAvatar extends StatefulWidget {
   final String userAvatar;

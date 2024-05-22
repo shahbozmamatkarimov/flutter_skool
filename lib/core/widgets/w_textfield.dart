@@ -50,7 +50,7 @@ class WTextField extends StatefulWidget {
     this.suffixIcon,
     this.onSubmitted,
     this.onChanged,
-    this.contentPadding = const EdgeInsets.symmetric(horizontal: 12),
+    this.contentPadding = const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
     this.readOnly = false,
     this.hintFontSize = 14,
     this.label,
@@ -96,7 +96,7 @@ class _WTextFieldState extends State<WTextField> {
           ],
         ),
         Container(
-          height: widget.maxLines == 1 ? 40 : null,
+          // height: widget.maxLines == 1 ? 40 : null,
           padding: const EdgeInsets.symmetric(vertical: 0),
           child: TextField(
             maxLines: widget.maxLines,

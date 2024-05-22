@@ -1,10 +1,9 @@
-import 'dart:js';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:skool/core/resources/app_colors.dart';
+import 'package:skool/config/routes/route_data.dart';
+import 'package:skool/config/routes/route_path.dart';
+import 'package:skool/config/routes/router.gr.dart';
 import 'package:skool/core/widgets/w_button.dart';
 import 'package:skool/core/widgets/w_textfield.dart';
 import 'package:skool/features/community/presentation/pages/main.dart';
@@ -42,31 +41,40 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 0;
 
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
-
   final List<List<dynamic>> bottomNav = [
     [
       "assets/svg/bnavigation/home.svg",
       "assets/svg/bnavigation/home_active.svg",
-      Search()
+          const TabRouteData(path: RoutePath.search, routeInfo: RootSearch()),
     ],
     [
       "assets/svg/bnavigation/search.svg",
-      "assets/svg/bnavigation/search_active.svg"
+      "assets/svg/bnavigation/search_active.svg",
+      Search(),
     ],
     [
       "assets/svg/bnavigation/bell.svg",
-      "assets/svg/bnavigation/bell_active.svg"
+      "assets/svg/bnavigation/bell_active.svg",
+      Search(),
     ],
     [
       "assets/svg/bnavigation/chat.svg",
-      "assets/svg/bnavigation/chat_active.svg"
+      "assets/svg/bnavigation/chat_active.svg",
+      Search(),
     ],
   ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => bottomNav[index][2],
+        ),
+      );
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -91,64 +99,6 @@ class _MyHomePageState extends State<MyHomePage> {
                 children: [
                   CommunityDialog(),
                   LanguageDialog(),
-                  // DropdownButtonHideUnderline(
-                  //   child: DropdownButton2(
-                  //     customButton: Container(
-                  //       height: 20,
-                  //       padding: const EdgeInsets.symmetric(horizontal: 20),
-                  //       child: Row(
-                  //         children: [
-                  //           Image.asset(
-                  //             "assets/image/en.png",
-                  //             width: 20,
-                  //             height: 20,
-                  //           ),
-                  //           const SizedBox(
-                  //             width: 8,
-                  //           ),
-                  //           const Text(
-                  //             "EN",
-                  //             style: TextStyle(
-                  //               fontSize: 14,
-                  //               fontWeight: FontWeight.w600,
-                  //             ),
-                  //           ),
-                  //           const SizedBox(
-                  //             width: 8,
-                  //           ),
-                  //           SvgPicture.asset(
-                  //             "assets/svg/icon/arrow.svg",
-                  //           ),
-                  //         ],
-                  //       ),
-                  //     ),
-                  //     items: [
-                  //       ...MenuItems.firstItems.map(
-                  //         (item) => DropdownMenuItem<MenuItem>(
-                  //           value: item,
-                  //           child: MenuItems.buildItem(item),
-                  //         ),
-                  //       ),
-                  //     ],
-                  //     onChanged: (value) {
-                  //       MenuItems.onChanged(context, value as MenuItem);
-                  //     },
-                  //     dropdownStyleData: DropdownStyleData(
-                  //       width: 200,
-                  //       padding: const EdgeInsets.all(0),
-                  //       decoration: BoxDecoration(
-                  //         borderRadius: BorderRadius.circular(4),
-                  //         color: const Color(0xFFFFFFFF),
-                  //       ),
-                  //       offset: const Offset(-110, -20),
-                  //     ),
-                  //     menuItemStyleData: MenuItemStyleData(
-                  //       customHeights: List<double>.filled(
-                  //           MenuItems.firstItems.length, 44),
-                  //       padding: const EdgeInsets.symmetric(horizontal: 12),
-                  //     ),
-                  //   ),
-                  // ),
                 ],
               ),
             ),
@@ -369,7 +319,6 @@ class CommunityDialog extends StatelessWidget {
                         child: SvgPicture.asset("assets/svg/icon/close.svg"),
                       ),
                       Container(
-                        height: 40,
                         margin: const EdgeInsets.symmetric(vertical: 16),
                         width: MediaQuery.of(context).size.width,
                         child: WTextField(

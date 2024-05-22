@@ -10,6 +10,11 @@ class AppRouter extends $AppRouter {
   @override
   List<AutoRoute> get routes => [
         AutoRoute(
+          page: RootSearch.page,
+          path: RoutePath.search,
+        ),
+        // --------
+        AutoRoute(
           page: SplashRoute.page,
           path: RoutePath.splash,
           initial: true,
@@ -94,6 +99,8 @@ class AppRouter extends $AppRouter {
               page: RootAdminPanel.page,
               path: RoutePath.adminPanel,
             ),
+
+            // ---------
           ],
         ),
       ];

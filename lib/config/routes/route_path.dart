@@ -16,4 +16,7 @@ class RoutePath {
   static const String agenda = "agenda";
   static const String chat = "chat";
   static const String adminPanel = "adminPanel";
+
+  // -------------------------------
+  static const String search = "search";
 }

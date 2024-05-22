@@ -9,8 +9,7 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_route/auto_route.dart' as _i25;
-// import 'package:skool/features/auth/presentation/pages/forgot_password_screen.dart'
-//     as _i6;
+import 'package:skool/features/search/presentation/pages/search.dart' as _i1;
 // import 'package:skool/features/auth/presentation/pages/login_screen.dart'
 //     as _i7;
 // import 'package:skool/features/auth/presentation/pages/register/register_screen.dart'
@@ -62,12 +61,12 @@ abstract class $AppRouter extends _i25.RootStackRouter {
 
   @override
   final Map<String, _i25.PageFactory> pagesMap = {
-    // AppMainRoute.name: (routeData) {
-    //   return _i25.AutoRoutePage<dynamic>(
-    //     routeData: routeData,
-    //     child: const _i1.AppMainScreen(),
-    //   );
-    // },
+    RootSearch.name: (routeData) {
+      return _i25.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: _i1.Search(),
+      );
+    },
     // ChangeEmailRoute.name: (routeData) {
     //   return _i25.AutoRoutePage<dynamic>(
     //     routeData: routeData,
@@ -541,6 +540,20 @@ class SplashRoute extends _i25.PageRouteInfo<void> {
         );
 
   static const String name = 'SplashRoute';
+
+  static const _i25.PageInfo<void> page = _i25.PageInfo<void>(name);
+}
+
+/// generated route for
+/// [_i1.RootSearch]
+class RootSearch extends _i25.PageRouteInfo<void> {
+  const RootSearch({List<_i25.PageRouteInfo>? children})
+      : super(
+          RootSearch.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'RootSearch';
 
   static const _i25.PageInfo<void> page = _i25.PageInfo<void>(name);
 }
