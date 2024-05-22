@@ -1,3 +1,5 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+
 part of 'community_service.dart';
 
 // **************************************************************************
@@ -23,9 +25,9 @@ class _CommunityService implements CommunityService {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    const Map<String, dynamic>? _data = null;
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<CommunityCategory>>(Options(
+    final Map<String, dynamic>? _data = null;
+    final _result = await _dio.fetch<List<dynamic>>(
+        _setStreamType<HttpResponse<List<CommunityCategory>>>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
@@ -41,11 +43,11 @@ class _CommunityService implements CommunityService {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-
-    List<dynamic> jsonList = _result.data!['data'] as List<dynamic>;
-    List<CommunityCategory> communities =
-        jsonList.map((json) => CommunityCategory.fromJson(json)).toList();
-    final httpResponse = HttpResponse(communities, _result);
+    var value = _result.data!
+        .map((dynamic i) =>
+            CommunityCategory.fromJson(i as Map<String, dynamic>))
+        .toList();
+    final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }
 
@@ -54,9 +56,9 @@ class _CommunityService implements CommunityService {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    const Map<String, dynamic>? _data = null;
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<CommunityCategory>>(Options(
+    final Map<String, dynamic>? _data = null;
+    final _result = await _dio.fetch<List<dynamic>>(
+        _setStreamType<HttpResponse<List<Community>>>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
@@ -72,11 +74,10 @@ class _CommunityService implements CommunityService {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-
-    List<dynamic> jsonList = _result.data!['data']['data'] as List<dynamic>;
-    List<Community> communities =
-        jsonList.map((json) => Community.fromJson(json)).toList();
-    final httpResponse = HttpResponse(communities, _result);
+    var value = _result.data!
+        .map((dynamic i) => Community.fromJson(i as Map<String, dynamic>))
+        .toList();
+    final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }
 

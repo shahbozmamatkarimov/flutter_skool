@@ -1,5 +1,4 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:skool/config/routes/route_path.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 

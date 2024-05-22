@@ -1,11 +1,10 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:skool/core/resources/app_colors.dart';
-import 'package:skool/core/widgets/w_textfield.dart';
 
-class Search extends StatelessWidget {
-  Search({super.key});
+@RoutePage()
+class SearchScreen extends StatelessWidget {
+  SearchScreen({super.key});
 
   final List<String> data = [];
   final TextEditingController searchController = TextEditingController();
