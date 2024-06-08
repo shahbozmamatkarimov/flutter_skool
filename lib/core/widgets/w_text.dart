@@ -31,6 +31,7 @@ class _WTextState extends State<WText> {
         color: widget.color,
         fontSize: widget.fontSize,
         fontWeight: widget.fontWeight,
+        height: 24 / 24,
       ),
     );
   }

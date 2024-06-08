@@ -30,7 +30,9 @@ class WTextField extends StatefulWidget {
   final String? label;
   final bool autoFocus;
   final Color? borderColor;
+  final double borderRadius;
   final Color? fillColor;
+  final bool? enabled;
 
   const WTextField({
     Key? key,
@@ -50,13 +52,16 @@ class WTextField extends StatefulWidget {
     this.suffixIcon,
     this.onSubmitted,
     this.onChanged,
-    this.contentPadding = const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+    this.contentPadding =
+        const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
     this.readOnly = false,
     this.hintFontSize = 14,
     this.label,
     this.autoFocus = false,
     this.borderColor,
+    this.borderRadius = 4,
     this.fillColor = AppColors.inputColor,
+    this.enabled = true,
   }) : super(key: key);
 
   @override
@@ -110,6 +115,7 @@ class _WTextFieldState extends State<WTextField> {
             maxLength: widget.maxLength,
             onChanged: widget.onChanged,
             autofocus: widget.autoFocus,
+            enabled: widget.enabled,
             decoration: InputDecoration(
               errorText: widget.errorText != null ? "" : null,
               prefixIcon: widget.prefixIcon,
@@ -146,11 +152,12 @@ class _WTextFieldState extends State<WTextField> {
               contentPadding: widget.contentPadding,
               counterText: "",
               hintText: widget.hint,
-              hintStyle: Styles.getTextStyle(
-                color: AppColors.c_a1,
-                letterSpacing: 1,
-                fontSize: widget.hintFontSize,
-              ),
+              hintStyle: widget.textStyle ??
+                  Styles.getTextStyle(
+                    color: AppColors.c_a1,
+                    letterSpacing: 1,
+                    fontSize: widget.hintFontSize,
+                  ),
               errorStyle:
                   Styles.getTextStyle(fontSize: 8, color: AppColors.danger),
             ),
@@ -166,6 +173,6 @@ class _WTextFieldState extends State<WTextField> {
 
   getBorder({Color? color}) => OutlineInputBorder(
         borderSide: BorderSide(color: color ?? AppColors.c_f2, width: 1),
-        borderRadius: BorderRadius.circular(4),
+        borderRadius: BorderRadius.circular(widget.borderRadius),
       );
 }

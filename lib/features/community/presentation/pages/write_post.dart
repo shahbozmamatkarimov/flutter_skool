@@ -71,7 +71,6 @@ class WritePost extends StatelessWidget {
                 controller: textController,
                 hint: "Title",
                 hintFontSize: 12,
-                autoFocus: true,
               ),
               const SizedBox(height: 12),
               WTextField(
