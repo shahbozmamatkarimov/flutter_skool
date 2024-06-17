@@ -11,7 +11,6 @@ abstract class CommunityService {
   factory CommunityService(Dio dio, {String baseUrl}) = _CommunityService;
   factory CommunityService.create() {
     final dio = Dio();
-    print(Urls.baseURl);
     return CommunityService(dio);
   }
 

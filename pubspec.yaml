@@ -70,8 +70,11 @@ flutter:
     - assets/svg/home/
     - assets/svg/classroom/
     - assets/svg/members/
+    - assets/svg/profile/
     - assets/svg/lang/
     - assets/svg/post/
     - assets/svg/modal/
     - assets/svg/bnavigation/
+    - assets/svg/cards/
+    - assets/svg/invite/
     - assets/image/

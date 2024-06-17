@@ -25,7 +25,7 @@ class _CommunityService implements CommunityService {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final Map<String, dynamic>? _data = null;
+    const Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<List<dynamic>>(
         _setStreamType<HttpResponse<List<CommunityCategory>>>(Options(
       method: 'GET',
@@ -43,6 +43,8 @@ class _CommunityService implements CommunityService {
               _dio.options.baseUrl,
               baseUrl,
             ))));
+    print(_result);
+    print("jdkjdkdjfkdjfk");
     var value = _result.data!
         .map((dynamic i) =>
             CommunityCategory.fromJson(i as Map<String, dynamic>))

@@ -1,5 +1,3 @@
-import 'package:auto_route/auto_route.dart';
-import 'package:skool/config/routes/route_path.dart';
 import 'package:skool/core/widgets/w_circular_icon.dart';
 import 'package:flutter/material.dart';
 

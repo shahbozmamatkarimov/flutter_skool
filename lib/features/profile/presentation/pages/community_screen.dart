@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:skool/core/resources/app_colors.dart';
+import 'package:skool/core/widgets/w_button.dart';
 import 'package:skool/core/widgets/w_text.dart';
 
 @RoutePage()
@@ -13,63 +14,6 @@ class CommunityScreen extends StatefulWidget {
 }
 
 class CommunityScreenState extends State<CommunityScreen> {
-  final TextEditingController nameController = TextEditingController();
-  final TextEditingController lastnameController = TextEditingController();
-
-  final List<String> postIcons = ["link", "gif"];
-
-  final TextEditingController commentController = TextEditingController();
-
-  final List<List<dynamic>> membersInfo = [
-    ["location", "Tashkent"],
-    ["online", "Online now"],
-    ["calendar", "Joined Feb 3, 2024"],
-  ];
-
-  final List<List<dynamic>> socialLinks = [
-    ["Website", TextEditingController()],
-    ["Instagram", TextEditingController()],
-    ["Twitter", TextEditingController()],
-    ["YouTube", TextEditingController()],
-    ["LinkedIn", TextEditingController()],
-    ["Facebook", TextEditingController()],
-  ];
-
-  final List<List<dynamic>> userActiveInfo = [
-    [1, 'Contributions'],
-    [0, 'Followers'],
-    [3, 'Following'],
-  ];
-
-  final List<List<Map<String, dynamic>>> accordionItems = [
-    [
-      {"isExpanded": false, "moduleName": "Social links", "index": 1},
-    ],
-    [
-      {"isExpanded": false, "moduleName": "Membership visibility", "index": 2},
-    ],
-  ];
-
-  final List<String> access = <String>[
-    "ON",
-    "OFF",
-  ];
-
-  final List<List<String>> notificationList = [
-    [
-      "Notifications",
-      "Notify me with sound and blinking tab header when somebody messages me."
-    ],
-    [
-      "Email notifications",
-      "If you're offline and somebody messages you, we'll let you know via email. We won't email you if you're online."
-    ]
-  ];
-
-  late String access_value = access.first;
-
-  bool switchButton = true;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -118,190 +62,106 @@ class CommunityScreenState extends State<CommunityScreen> {
                     color: AppColors.c_07,
                     fontSize: 14,
                   ),
-                  for (var note in notificationList)
-                    Container(
-                      padding: const EdgeInsets.all(12),
-                      margin: const EdgeInsets.only(bottom: 24),
-                      decoration: BoxDecoration(
-                        border: Border.all(color: AppColors.c_e0),
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      child: Column(
+                  const SizedBox(height: 24),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
                         children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          // Image.asset("assets/image/logo.png"),
+                          Container(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 6, vertical: 10),
+                            decoration: BoxDecoration(
+                              color: AppColors.c_2a,
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            child: const WText(
+                              text: "DM",
+                              color: AppColors.white,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                          const SizedBox(width: 16),
+                          const Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               WText(
-                                text: "Communities",
+                                text: "Digital Marketer",
                                 fontWeight: FontWeight.w600,
-                                fontSize: 20,
                               ),
-                              Switch(
-                                // This bool value toggles the switch.
-                                value: switchButton,
-                                inactiveThumbImage:
-                                    const AssetImage("assets/image/switch.png"),
-                                activeColor: AppColors.white,
-                                activeTrackColor: AppColors.c_2a,
-                                inactiveThumbColor: AppColors.white,
-                                inactiveTrackColor: AppColors.c_e0,
-                                focusColor: AppColors.transparent,
-                                trackOutlineColor:
-                                    const MaterialStatePropertyAll(
-                                        AppColors.transparent),
-                                onChanged: (bool value) {
-                                  // This is called when the user toggles the switch.
-                                  setState(() {
-                                    switchButton = value;
-                                  });
-                                },
-                              ),
+                              SizedBox(height: 4),
+                              WText(
+                                text: "Public • Free",
+                                fontSize: 12,
+                              )
                             ],
-                          ),
-                          const SizedBox(height: 24),
-                          WText(
-                            text: note[1],
-                            color: AppColors.c_07,
-                            fontSize: 14,
                           )
                         ],
                       ),
-                    ),
-                  Container(
-                    padding: const EdgeInsets.all(12),
-                    margin: const EdgeInsets.only(bottom: 24),
-                    decoration: BoxDecoration(
-                      border: Border.all(color: AppColors.c_e0),
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const WText(
-                          text: "Who can message me?",
-                          fontWeight: FontWeight.w600,
-                          fontSize: 20,
-                        ),
-                        const SizedBox(height: 24),
-                        const WText(
-                          text:
-                              "Only members in the group you're in can message you. You choose what group users can message you from by turning your chat on/off below.",
-                          color: AppColors.c_07,
-                          fontSize: 14,
-                        ),
-                        const SizedBox(height: 24),
-                        Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Row(
-                                children: [
-                                  // Image.asset("assets/image/logo.png"),
-                                  Container(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 6, vertical: 10),
-                                    decoration: BoxDecoration(
-                                      color: AppColors.c_2a,
-                                      borderRadius: BorderRadius.circular(8),
-                                    ),
-                                    child: const WText(
-                                      text: "DM",
-                                      color: AppColors.white,
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                  ),
-                                  const SizedBox(width: 16),
-                                  const Text(
-                                    "Digital Marketer",
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.w600),
-                                  ),
-                                ],
-                              ),
-                              Container(
-                                decoration: BoxDecoration(
-                                  border: Border.all(color: AppColors.c_e0),
-                                  borderRadius: BorderRadius.circular(4),
-                                ),
-                                height: 45,
-                                width: 80,
-                                child: DropdownButton<String>(
-                                  value: access_value,
-                                  icon: SvgPicture.asset(
-                                      "assets/svg/icon/arrow.svg"),
-                                  elevation: 0,
-                                  padding: const EdgeInsets.all(12),
-                                  borderRadius: BorderRadius.circular(4),
-                                  dropdownColor: AppColors.white,
-                                  focusColor: AppColors.c_e0,
-                                  isExpanded: true,
-                                  style: const TextStyle(
-                                    color: AppColors.c_07,
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                  underline: Container(
-                                    height: 0,
-                                  ),
-                                  selectedItemBuilder: (BuildContext context) {
-                                    return access.map<Widget>((String item) {
-                                      return DropdownMenuItem<String>(
-                                        value: item,
-                                        child: Text(item),
-                                      );
-                                    }).toList();
-                                  },
-                                  onChanged: (String? value) {
-                                    // This is called when the user selects an item.
-                                    setState(() {
-                                      access_value = value!;
-                                    });
-                                  },
-                                  items: access.map<DropdownMenuItem<String>>(
-                                      (String value) {
-                                    return DropdownMenuItem<String>(
-                                      value: value,
-                                      child: Row(
-                                        children: [
-                                          Text(value),
-                                          const SizedBox(width: 8),
-                                          access_value == value
-                                              ? SvgPicture.asset(
-                                                  "assets/svg/icon/true.svg")
-                                              : const Text(""),
-                                        ],
-                                      ),
-                                    );
-                                  }).toList(),
-                                ),
-                              ),
-                            ])
-                      ],
-                    ),
+                      Row(
+                        children: [
+                          Container(
+                            height: 32.0,
+                            width: 1.0,
+                            color: AppColors.c_e0,
+                          ),
+                          const SizedBox(width: 16),
+                          SvgPicture.asset("assets/svg/home/full_pin.svg"),
+                          // SvgPicture.asset("assets/svg/home/pin.svg", color: AppColors.c_a1,),
+                        ],
+                      ),
+                    ],
                   ),
-                  Container(
-                    width: double.infinity,
-                    padding: const EdgeInsets.all(12),
-                    margin: const EdgeInsets.only(bottom: 24),
-                    decoration: BoxDecoration(
-                      border: Border.all(color: AppColors.c_e0),
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: const Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        WText(
-                          text: "Blocked users",
-                          fontWeight: FontWeight.w600,
-                          fontSize: 20,
+                  const SizedBox(height: 16),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: WButton(
+                          color: AppColors.c_bc,
+                          buttonType: ButtonType.outline,
+                          verticalPadding: 12,
+                          text: "",
+                          onTap: () => {},
+                          child: Row(
+                            children: [
+                              WText(
+                                text: "admin".toUpperCase(),
+                                fontSize: 14,
+                                fontWeight: FontWeight.w600,
+                                color: AppColors.c_2a,
+                              ),
+                              const SizedBox(width: 10),
+                              SvgPicture.asset(
+                                  "assets/svg/profile/settings.svg")
+                            ],
+                          ),
                         ),
-                        SizedBox(height: 24),
-                        WText(
-                          text: "You have no blocked users.",
-                          color: AppColors.c_07,
-                          fontSize: 14,
-                        )
-                      ],
-                    ),
+                      ),
+                      const SizedBox(width: 16),
+                      Expanded(
+                        child: WButton(
+                          color: AppColors.c_bc,
+                          buttonType: ButtonType.outline,
+                          verticalPadding: 12,
+                          text: "",
+                          onTap: () => {},
+                          child: Row(
+                            children: [
+                              WText(
+                                text: "Membership".toUpperCase(),
+                                fontSize: 14,
+                                fontWeight: FontWeight.w600,
+                                color: AppColors.c_2a,
+                              ),
+                              const SizedBox(width: 10),
+                              SvgPicture.asset(
+                                  "assets/svg/profile/settings.svg")
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),

@@ -5,11 +5,7 @@ import 'package:skool/core/widgets/w_button.dart';
 import 'package:skool/features/community/presentation/pages/add_module.dart';
 
 class Module extends StatelessWidget {
-  Module({super.key});
-
-  final List<String> postIcons = ["link", "gif"];
-
-  final TextEditingController commentController = TextEditingController();
+  const Module({super.key});
 
   @override
   Widget build(BuildContext context) {

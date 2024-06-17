@@ -13,7 +13,7 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  int _selectedIndex = 0; // Assuming initial tab index
+  int _selectedIndex = 0;
 
   final List<List<dynamic>> bottomNav = [
     [
@@ -38,13 +38,6 @@ class _MainScreenState extends State<MainScreen> {
       // Search(),
     ],
   ];
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-    context.router.pushNamed(RoutePath.search);
-  }
 
   @override
   Widget build(BuildContext context) {

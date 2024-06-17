@@ -1,4 +1,3 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
@@ -46,15 +45,6 @@ class _CommunityScreenState extends State<CommunityScreen> {
       // Search(),
     ],
   ];
-
-  int _selectedIndex = 0;
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-    context.router.pushNamed(RoutePath.search);
-  }
 
   @override
   Widget build(BuildContext context) {

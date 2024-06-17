@@ -9,31 +9,31 @@ part of 'community.dart';
 Community _$CommunityFromJson(Map<String, dynamic> json) => Community(
       id: (json['id'] as num?)?.toInt(),
       name: json['name'] as String?,
-      categoryId: (json['categoryId'] as num?)?.toInt(),
-      userId: (json['userId'] as num?)?.toInt(),
-      groupType: json['groupType'] as String?,
-      groupPrice: json['groupPrice'] as String?,
+      category_id: (json['category_id'] as num?)?.toInt(),
+      user_id: (json['user_id'] as num?)?.toInt(),
+      group_type: json['group_type'] as String?,
+      group_price: json['group_price'] as String?,
       description: json['description'] as String?,
       username: json['username'] as String?,
       image: json['image'] as String?,
-      createdAt: json['createdAt'] == null
+      created_at: json['created_at'] == null
           ? null
-          : DateTime.parse(json['createdAt'] as String),
-      updatedAt: json['updatedAt'] == null
+          : DateTime.parse(json['created_at'] as String),
+      updated_at: json['updated_at'] == null
           ? null
-          : DateTime.parse(json['updatedAt'] as String),
+          : DateTime.parse(json['updated_at'] as String),
     );
 
 Map<String, dynamic> _$CommunityToJson(Community instance) => <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
-      'categoryId': instance.categoryId,
-      'userId': instance.userId,
-      'groupType': instance.groupType,
-      'groupPrice': instance.groupPrice,
+      'category_id': instance.category_id,
+      'user_id': instance.user_id,
+      'group_type': instance.group_type,
+      'group_price': instance.group_price,
       'description': instance.description,
       'username': instance.username,
       'image': instance.image,
-      'createdAt': instance.createdAt?.toIso8601String(),
-      'updatedAt': instance.updatedAt?.toIso8601String(),
+      'created_at': instance.created_at?.toIso8601String(),
+      'updated_at': instance.updated_at?.toIso8601String(),
     };

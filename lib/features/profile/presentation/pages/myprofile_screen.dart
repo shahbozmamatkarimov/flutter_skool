@@ -1,6 +1,5 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:skool/core/resources/app_colors.dart';
 import 'package:skool/core/widgets/w_button.dart';
@@ -11,11 +10,6 @@ import 'package:skool/core/widgets/w_user_indicator.dart';
 @RoutePage()
 class MyProfileScreen extends StatelessWidget {
   MyProfileScreen({super.key});
-
-  final List<String> postIcons = ["link", "gif"];
-
-  final TextEditingController commentController = TextEditingController();
-
   final List<List<dynamic>> membersInfo = [
     ["location", "Tashkent"],
     ["online", "Online now"],

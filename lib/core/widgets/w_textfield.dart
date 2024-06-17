@@ -101,7 +101,7 @@ class _WTextFieldState extends State<WTextField> {
           ],
         ),
         Container(
-          // height: widget.maxLines == 1 ? 40 : null,
+          height: widget.maxLines == 1 ? 40 : null,
           padding: const EdgeInsets.symmetric(vertical: 0),
           child: TextField(
             maxLines: widget.maxLines,

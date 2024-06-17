@@ -6,11 +6,7 @@ import 'package:skool/core/widgets/w_user_avatar.dart';
 import 'package:skool/core/widgets/w_user_indicator.dart';
 
 class LeaderBoards extends StatelessWidget {
-  LeaderBoards({super.key});
-
-  final List<String> postIcons = ["link", "gif"];
-
-  final TextEditingController commentController = TextEditingController();
+  const LeaderBoards({super.key});
 
   @override
   Widget build(BuildContext context) {

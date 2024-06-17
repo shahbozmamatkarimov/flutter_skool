@@ -10,7 +10,7 @@ class CommunityCategory {
 
   @override
   String toString() {
-    return 'CommunityCategory{id: $id, country: $name, city: $icon}';
+    return 'CommunityCategory{id: $id, name: $name, icon: $icon}';
   }
 
   const CommunityCategory({

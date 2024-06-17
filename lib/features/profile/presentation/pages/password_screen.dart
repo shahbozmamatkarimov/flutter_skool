@@ -1,8 +1,5 @@
-import 'dart:math';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:skool/core/resources/app_colors.dart';
 import 'package:skool/core/widgets/w_button.dart';
@@ -18,52 +15,8 @@ class PasswordScreen extends StatefulWidget {
 }
 
 class _PasswordScrenenState extends State<PasswordScreen> {
-  final TextEditingController nameController = TextEditingController();
   final TextEditingController lastnameController = TextEditingController();
-
-  final List<String> postIcons = ["link", "gif"];
-
-  final TextEditingController commentController = TextEditingController();
-
-  final List<List<dynamic>> membersInfo = [
-    ["location", "Tashkent"],
-    ["online", "Online now"],
-    ["calendar", "Joined Feb 3, 2024"],
-  ];
-
-  final List<List<dynamic>> socialLinks = [
-    ["Website", TextEditingController()],
-    ["Instagram", TextEditingController()],
-    ["Twitter", TextEditingController()],
-    ["YouTube", TextEditingController()],
-    ["LinkedIn", TextEditingController()],
-    ["Facebook", TextEditingController()],
-  ];
-
-  final List<List<dynamic>> userActiveInfo = [
-    [1, 'Contributions'],
-    [0, 'Followers'],
-    [3, 'Following'],
-  ];
-
-  final List<List<Map<String, dynamic>>> accordionItems = [
-    [
-      {"isExpanded": false, "moduleName": "Social links", "index": 1},
-    ],
-    [
-      {"isExpanded": false, "moduleName": "Membership visibility", "index": 2},
-    ],
-  ];
-
-  bool switchButton = true;
-
-  final List<String> access = <String>[
-    "(GMT +05:00) Asia/Tashkent",
-    "(GMT +05:00) Asia/Uzbekistan",
-    "(GMT +05:00) Asia/Samarkand",
-  ];
-  late String access_value = access.first;
-
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(

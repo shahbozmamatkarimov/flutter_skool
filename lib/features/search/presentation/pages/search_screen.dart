@@ -24,23 +24,25 @@ class SearchScreen extends StatelessWidget {
           backgroundColor: AppColors.c_bc,
           flexibleSpace: Container(
             margin: const EdgeInsets.only(top: 20, left: 20, right: 20),
-            height: 48,
+            // height: 48,
             decoration: BoxDecoration(borderRadius: BorderRadius.circular(8)),
             clipBehavior: Clip.hardEdge,
             child: WTextField(
               controller: searchController,
               hint: "Search",
               hintFontSize: 16,
+              borderRadius: 8,
               fillColor: AppColors.white,
               borderColor: AppColors.white,
               contentPadding:
                   const EdgeInsets.symmetric(vertical: 14, horizontal: 20),
               prefixIcon: Padding(
                 padding:
-                    const EdgeInsets.symmetric(vertical: 14, horizontal: 20),
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                 child: SvgPicture.asset(
                   "assets/svg/icon/search.svg",
                   width: 20,
+                  height: 20,
                 ),
               ),
             ),

@@ -1,4 +1,3 @@
-import 'package:skool/core/resources/app_icons.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 class MenuData {
@@ -23,6 +22,21 @@ abstract class AppMenu {
   static final chat = MenuData(text: "chat".tr());
   static final adminPanel = MenuData(text: "adminPanel".tr());
   static final logout = MenuData(text: "logout".tr());
+}
+
+abstract class CommunityMenu {
+  static final dashboard = MenuData(text: "Dashboard".tr());
+  static final payouts = MenuData(text: "Payouts".tr());
+  static final invite = MenuData(text: "Invite".tr());
+  static final general = MenuData(text: "General".tr());
+  static final subscriptions = MenuData(text: "Subscriptions".tr());
+  static final categories = MenuData(text: "Categories".tr());
+  static final plugins = MenuData(text: "Plugins".tr());
+  static final metrics = MenuData(text: "Metrics".tr());
+  static final gamification = MenuData(text: "Gamification".tr());
+  static final discovery = MenuData(text: "Discovery".tr());
+  static final links = MenuData(text: "Links".tr());
+  static final billing = MenuData(text: "Billing & referrals".tr());
 }
 
 abstract class ProfileMenu {

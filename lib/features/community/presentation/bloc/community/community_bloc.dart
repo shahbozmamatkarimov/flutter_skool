@@ -19,6 +19,7 @@ class CommunityBloc extends Bloc<CommunityEvent, CommunityState> {
       emit(Loading());
       try {
         final response = await communityRepo.getCommunity();
+        print("==$response");
         if (response is DataSuccess) {
           // community = response.data;
           List<Community>? community = response.data;
@@ -32,6 +33,7 @@ class CommunityBloc extends Bloc<CommunityEvent, CommunityState> {
           }
         }
       } catch (e) {
+        print("==$e");
         final errorMessage = 'Failed to load community data: $e';
         emit(ErrorLoadingCommunityData(errorMessage));
       }

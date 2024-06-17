@@ -4,11 +4,7 @@ import 'package:skool/core/resources/app_colors.dart';
 import 'package:skool/core/widgets/w_user_avatar.dart';
 
 class Votes extends StatelessWidget {
-  Votes({super.key});
-
-  final List<String> postIcons = ["link", "gif"];
-
-  final TextEditingController commentController = TextEditingController();
+  const Votes({super.key});
 
   @override
   Widget build(BuildContext context) {

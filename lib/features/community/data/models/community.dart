@@ -6,17 +6,17 @@ part 'community.g.dart';
 class Community {
   int? id;
   String? name;
-  int? categoryId;
-  int? userId;
-  String? groupType;
-  String? groupPrice;
+  int? category_id;
+  int? user_id;
+  String? group_type;
+  String? group_price;
   String? description;
   String? username;
   String? image;
-  DateTime? createdAt;
-  DateTime? updatedAt;
+  DateTime? created_at;
+  DateTime? updated_at;
 
-    @override
+  @override
   String toString() {
     return 'Community{id: $id, country: $name, description: $description}';
   }
@@ -24,15 +24,15 @@ class Community {
   Community({
     this.id,
     this.name,
-    this.categoryId,
-    this.userId,
-    this.groupType,
-    this.groupPrice,
+    this.category_id,
+    this.user_id,
+    this.group_type,
+    this.group_price,
     this.description,
     this.username,
     this.image,
-    this.createdAt,
-    this.updatedAt,
+    this.created_at,
+    this.updated_at,
   });
 
   factory Community.fromJson(Map<String, dynamic> json) =>

@@ -1,5 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:skool/core/resources/app_colors.dart';
+import 'package:skool/core/widgets/w_button.dart';
 import 'package:skool/features/community/presentation/pages/about.dart';
 import 'package:skool/features/community/presentation/pages/calendar.dart';
 import 'package:skool/features/community/presentation/pages/classroom.dart';
@@ -80,12 +82,22 @@ class _CommunityTabScreenState extends State<CommunityTabScreen>
                   MaterialStateProperty.all<Color>(Colors.transparent),
               labelStyle: const TextStyle(
                 fontWeight: FontWeight.w700,
+                fontSize: 16,
+                color: AppColors.c_07,
               ),
               tabs: [
                 for (String tab in communityTabs)
                   Tab(
                     child: Text(tab),
                   ),
+                WButton(
+                  text: "Settings",
+                  color: AppColors.transparent,
+                  verticalPadding: 0,
+                  horizontalPadding: 0,
+                  textColor: AppColors.c_07,
+                  onTap: () => {context.router.pushNamed("/settings")},
+                ),
               ],
             ),
           ),
@@ -97,8 +109,9 @@ class _CommunityTabScreenState extends State<CommunityTabScreen>
                 Classroom(),
                 const Calendar(),
                 Members(),
-                LeaderBoards(),
+                const LeaderBoards(),
                 About(),
+                // const Settings(),
               ],
             ),
           ),

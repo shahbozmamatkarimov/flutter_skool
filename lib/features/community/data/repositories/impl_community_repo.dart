@@ -37,6 +37,7 @@ class ImplCommunityRepo extends CommunityRepo {
       final result = await communityService.getCommunityCategory();
       return DataSuccess<List<CommunityCategory>>(data: result.data);
     } catch (e) {
+      print(e);
       return DataException.getError<List<CommunityCategory>>(e);
     }
   }
@@ -45,6 +46,7 @@ class ImplCommunityRepo extends CommunityRepo {
   Future<DataState<List<Community>>> getCommunity() async {
     try {
       final result = await communityService.getCommunity();
+      print("new res = $result");
       return DataSuccess<List<Community>>(data: result.data);
     } catch (e) {
       return DataException.getError<List<Community>>(e);

@@ -2,22 +2,14 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:skool/core/resources/app_colors.dart';
-import 'package:skool/core/widgets/w_button.dart';
 import 'package:skool/core/widgets/w_text.dart';
 import 'package:skool/core/widgets/w_textfield.dart';
 
 @RoutePage()
 class ChatScreen extends StatelessWidget {
   ChatScreen({super.key});
-
-  final List<String> data = [];
   final TextEditingController searchController = TextEditingController();
-
-  final List<String> notificationType = [
-    'All group',
-    'Just this group',
-  ];
-
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
